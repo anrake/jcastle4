@@ -10,7 +10,9 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 gem 'devise'
+gem 'omniauth-facebook'
 gem 'foundation-rails'
+gem 'foundation-icons-sass-rails'
 gem 'mysql2'
 gem 'pundit'
 gem 'simple_form'

@@ -1,0 +1,2 @@
+module KokuinsHelper
+end

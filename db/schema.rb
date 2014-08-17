@@ -11,7 +11,61 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140322013634) do
+ActiveRecord::Schema.define(version: 20140817074551) do
+
+  create_table "castles", force: true do |t|
+    t.boolean  "approved",                                   default: false
+    t.integer  "user_id"
+    t.string   "castle_name_en"
+    t.string   "castle_name_ja"
+    t.string   "castle_name_r"
+    t.boolean  "has_ishigaki"
+    t.boolean  "has_buildings"
+    t.string   "kamon"
+    t.string   "kamon_fam"
+    t.string   "castle_name_alt"
+    t.string   "founder"
+    t.string   "year"
+    t.string   "year_reconstructed"
+    t.string   "castle_type"
+    t.string   "structure"
+    t.string   "artifacts"
+    t.string   "location"
+    t.string   "clongitude"
+    t.string   "clatitude"
+    t.integer  "gmapicn"
+    t.string   "access"
+    t.string   "website"
+    t.string   "pro_web_name"
+    t.string   "visited"
+    t.text     "notes"
+    t.text     "history"
+    t.text     "shortdesc"
+    t.string   "condition"
+    t.string   "prefecture"
+    t.string   "historical_value"
+    t.string   "rating"
+    t.string   "year_visited"
+    t.string   "top_100"
+    t.string   "has_NT"
+    t.string   "has_ICP"
+    t.string   "destination"
+    t.string   "unesco"
+    t.string   "period"
+    t.integer  "bestZoom"
+    t.string   "bestMap"
+    t.decimal  "rating_average",     precision: 6, scale: 2, default: 0.0
+    t.text     "notesJse"
+    t.boolean  "manualUpdate"
+    t.string   "ekiLatLng"
+    t.integer  "ekiElev"
+    t.integer  "castleElev"
+    t.integer  "elevChange"
+    t.string   "timeRequired"
+    t.text     "visitorInfo"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "identities", force: true do |t|
     t.integer  "user_id"
@@ -25,6 +79,76 @@ ActiveRecord::Schema.define(version: 20140322013634) do
   end
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
+
+  create_table "kokuins", force: true do |t|
+    t.string   "thumbnail"
+    t.text     "known_users"
+    t.text     "description"
+    t.text     "shortDesc"
+    t.text     "descJse"
+    t.text     "shortDescJse"
+    t.string   "ktype"
+    t.string   "ktype2"
+    t.integer  "strokes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "photomaps", force: true do |t|
+    t.integer  "photo_id"
+    t.integer  "imageable_id"
+    t.string   "imageable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "highlight"
+  end
+
+  create_table "photos", force: true do |t|
+    t.integer  "castle_id"
+    t.integer  "property_id"
+    t.string   "fullpicture"
+    t.string   "thumbnail"
+    t.integer  "highlighted"
+    t.string   "highlightPict"
+    t.integer  "ispanorama",                               default: 0
+    t.string   "struct_type"
+    t.text     "description"
+    t.text     "shortDesc"
+    t.integer  "vieworder"
+    t.string   "donatedBy"
+    t.string   "donatedByLink"
+    t.decimal  "plat",           precision: 19, scale: 14
+    t.decimal  "plong",          precision: 19, scale: 14
+    t.boolean  "has_gps"
+    t.text     "descJse"
+    t.text     "shortDescJse"
+    t.boolean  "hide_profile",                             default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "imageable_id"
+    t.string   "imageable_type"
+  end
+
+  create_table "resources", force: true do |t|
+    t.string   "name_en"
+    t.string   "name_ja"
+    t.string   "name_r"
+    t.integer  "resource_id"
+    t.integer  "resourceType"
+    t.string   "fullpicture"
+    t.string   "thumbnail"
+    t.text     "description"
+    t.text     "shortDesc"
+    t.integer  "vieworder"
+    t.decimal  "rlat",          precision: 19, scale: 14
+    t.decimal  "rlong",         precision: 19, scale: 14
+    t.boolean  "has_gps"
+    t.text     "descJse"
+    t.text     "shortDescJse"
+    t.string   "highlightPict"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

@@ -1,4 +1,12 @@
 Jcastle4::Application.routes.draw do
+  resources :resources
+
+  resources :photos
+
+  resources :kokuins
+
+  resources :castles
+
   root :to => "home#index"
 
 #  devise_for :users, :controllers => {:registrations => "registrations"}

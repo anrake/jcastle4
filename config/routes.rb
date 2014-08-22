@@ -1,4 +1,5 @@
 Jcastle4::Application.routes.draw do
+  mount RailsAdmin::Engine => '/railsadmin', as: 'rails_admin'
   resources :resources
 
   resources :photos

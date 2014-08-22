@@ -19,6 +19,7 @@ gem 'foundation-icons-sass-rails'
 gem 'mysql2'
 gem 'pundit'
 gem 'simple_form'
+gem 'rails_admin'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'

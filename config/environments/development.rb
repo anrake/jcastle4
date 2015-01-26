@@ -40,4 +40,14 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  config.action_controller.asset_host = Proc.new do |source|
+  case source
+  when /^\/(images|videos|audios)/
+    "http://media.jcastle.info"
+#  else
+#    "http://localhost"
+  end
+end
+
 end

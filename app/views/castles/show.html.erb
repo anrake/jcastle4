@@ -1,8 +1,209 @@
-<p id="notice"><%= notice %></p>
 
-<%= @castle.highlighted.fullpicture %>
+  <div class="row castle_header">    
+    <div class="large-12 columns">
+    	<div class="row collapse">
+    		<div class="large-8 columns">
+	        <h3><%= @castle.castle_name_en %> <small> <%= @castle.castle_name_ja %></small></h3>
+	        <div class="row collapse">
+				    <div class="large-12 columns">
+				    	<%= @castle.location %> | <%= @castle.historical_value %>
+				    </div>
+	        </div>
 
-<p>
-<%= link_to 'Edit', edit_castle_path(@castle) %> |
-<%= link_to 'Back', castles_path %>
-</p>
+        </div>
+        <div class="large-2 columns">
+  	      <h3><% @castle.rating.to_i.times do %>&#10029;<% end %><% (5-@castle.rating.to_i).times do %>&#10025;<% end %></h3>
+  	    </div>
+  	    <div class="large-2 columns">	<%= image_tag "fukushima2.png" %></div>
+  	  </div>
+
+    </div>
+	</div>
+
+
+
+	<div class="row">
+  	<div class="large-9 columns">
+	  	<div class="large-10 large-centered columns">
+        	<% unless @castle.highlighted.nil? %>
+   		 			<%= image_tag @castle.highlighted.fullpicture %>
+		 			<% end %>
+			</div>
+		</div>
+
+		<div class="large-3 columns">
+	      <div class="panel">
+		      Founder: <%= @castle.founder %>
+		      <br />Year: <%= @castle.year %>
+	  	    <br />Type: <%= @castle.castle_type%>
+	    	  <br />Reconstructed: <%= @castle.year_reconstructed %>
+	      </div>
+
+	      <div class="panel">
+							<% if @castle.has_buildings? %>
+							<img src="http://media.jcastle.info/images/layout/icons/mon.png" data-tooltip aria-haspopup="true" class="has_tip" title="this castle has supporting structures such as gates, watchtowers, storehouses, palaces, etc" /><% end %>
+						<% if @castle.has_ishigaki? %>
+						<img src="http://media.jcastle.info/images/layout/icons/ishigaki2.png" data-tooltip aria-haspopup="true" class="has_tip" title="This castle has stone walls" />
+						<% end %>
+							<% if @castle.top_100 == 'listed' %>
+								<% if @castle.historical_value == 'National_Historic_Site' || @castle.historical_value == 'Special_Historic_Site' %>
+						<img src="http://media.jcastle.info/images/layout/icons/castle_n100.png"  data-tooltip aria-haspopup="true" class="has_tip"  title="This castle is listed in the Top 100 and is a National Historical Site" />
+								<% elsif @castle.historical_value == 'Prefectural_Historic_Site' %>
+								<img src="http://media.jcastle.info/images/layout/icons/castle_p100.png"  data-tooltip aria-haspopup="true" class="has_tip"  title="This castle is listed in the Top 100 and is a Prefectural Historical Site" />
+								<% else %>
+								<img src="http://media.jcastle.info/images/layout/icons/castle_100.png"  data-tooltip aria-haspopup="true" class="has_tip"  title="This castle is listed in the Top 100" />
+								<% end %>
+							<% else %>
+							<% if @castle.historical_value == 'National_Historic_Site' || @castle.historical_value == 'Special_Historic_Site' %>
+							<img src="http://media.jcastle.info/images/layout/icons/castle_n.png"  data-tooltip aria-haspopup="true" class="has_tip"  title="This castle is a National Historical Site" />
+									<% elsif @castle.historical_value == 'Prefectural_Historic_Site' %>
+									<img src="http://media.jcastle.info/images/layout/icons/castle_p.png"  data-tooltip aria-haspopup="true" class="has_tip"  title="This castle is a Prefectural Historical Site" />
+								<% end %>
+							<% end %>
+  		  </div>
+		</div>
+
+  <div class="row">
+		<div class="large-9 columns">
+			  	<table>
+			  		<tr>
+			  			<td width="50%"><b>alt name: </b><%= @castle.castle_name_alt %></td>
+			  			<td><b>founder: </b><%= @castle.founder %></td>
+			  			</tr><tr>
+			  			<td><b>year: </b><%= @castle.year %></td>
+			  			<td><b>reconstructed: </b><%= @castle.year_reconstructed %></td>
+			  			</tr><tr>
+			  			<td><b>type: </b><%= @castle.castle_type %></td>
+			  			<td><b>structure: </b><%= @castle.structure %></td>
+			  			</tr><tr>
+			  			<td><b>artifacts: </b><%= @castle.artifacts %></td>
+			  			<td><b>location: </b><%= @castle.location %></td>
+			  			</tr><tr>
+			  			<td colspan="2"><b>website: </b><%= @castle.website %></td>
+			  			</tr><tr>
+			  			<td><b>access: </b><%= @castle.access %></td>
+			  			<td><b>visitor info: </b><%= @castle.visitorInfo %> | <i>time required</i> <%= @castle.timeRequired %></td>
+			  			</tr><tr>
+			  			<td><b>visited: </b><%= @castle.visited %></td>
+			  			<td><b>rating: </b><%= @castle.rating %></td>
+			  			</tr><tr>
+			  			<td colspan="2"><b>notes: </b><%= @castle.notes %></td>
+			  			</tr><tr>
+			  			<td colspan="2"><b>history: </b><%= @castle.history %></td>
+			  			</tr>
+			  	</table>
+			  	<div id="map_canvas" style="height: 350px"></div>
+		</div>
+
+		<div class="large-3 columns">
+		  		<% unless @cpictures.empty? && @cpictures.length > 1 %>
+					<ul class="castlethumbs">
+						<% for cpicture in @cpictures %>			  
+							<li><%= link_to image_tag(cpicture.thumbnail, class: "has_tip", title: cpicture.shortDesc, :"data-tooltip" => '', :"data-tooltip" => '', :"aria-haspopup"=>"true"), photo_path(cpicture)  %></li>
+		  			<% end %>
+		  		</ul>
+				<% end %>
+		</div>
+	</div>
+
+
+<!--	<div id="side_bar"></div> -->
+
+<script type="text/javascript"> 
+
+var orangeIcon = new google.maps.MarkerImage('http://media.jcastle.info/images/gmap/orange.png',
+new google.maps.Size(12,20),
+new google.maps.Point(0,0),
+new google.maps.Point(6,18));
+
+var yellowIcon = new google.maps.MarkerImage('http://media.jcastle.info/images/gmap/yellow.png',
+  new google.maps.Size(12,20),
+  new google.maps.Point(0,0),
+  new google.maps.Point(6,18));
+
+  var shadow = new google.maps.MarkerImage('http://media.jcastle.info/images/gmap/shadow2.png',
+  new google.maps.Size(23,20),
+  new google.maps.Point(0,0),
+  new google.maps.Point(6,18));
+
+ 	var side_bar_html = "<ul id='navlist'>"; 
+  var gmarkers = []; 
+  var map = {
+    map: null,
+    bounds: null}
+
+	function createMarker(latlng, name, html, i, picid) {
+    var contentString = "<img src='http://media.jcastle.info/images/" + html + "' class='mapthumb'>";
+    var marker = new google.maps.Marker({
+        position: latlng,
+        map: map,
+		    icon: yellowIcon,
+    		shadow: shadow
+    });
+
+    var myOptions = {
+      content: contentString
+      ,alignBottom: true
+      ,closeBoxURL: ""
+      ,boxStyle: { 
+        margin: "0 0 8px 4px"
+        }
+      };
+    var ib = new InfoBox(myOptions);
+    i = i-1;
+    var lim = '#li-' + i + ' a';
+    
+     google.maps.event.addListener(marker, 'mouseover', function() {
+      ib.open(map, marker);
+      $(lim).addClass("hoverclass");
+      marker.setIcon(orangeIcon);     
+      });
+
+     google.maps.event.addListener(marker, 'mouseout', function() {
+      ib.close(map, marker);
+      $(lim).removeClass("hoverclass");
+      marker.setIcon(yellowIcon);
+      });
+
+     google.maps.event.addListener(marker, 'click', function() {
+      window.location.href = '/photos/'+picid;
+      });   
+
+    gmarkers.push(marker);
+    side_bar_html += '<li id="li-' + (gmarkers.length-1) + '"><a href="javascript:myclick(' + (gmarkers.length-1) + ')" onmouseover="myover(' + (gmarkers.length-1) + ')" onmouseout="myout(' + (gmarkers.length-1) + ')">' + name + '<\/a></li>'
+;
+}
+
+$(document).ready(function($){ 
+  var myOptions = {
+    zoom: <%= @castle.bestZoom %>,
+    center: new google.maps.LatLng(<%= @castle.clatitude %>,<%= @castle.clongitude %>),
+    mapTypeControl: true,
+    navigationControl: true,
+    mapTypeId: google.maps.MapTypeId.SATELLITE
+  }
+
+  map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+  var bounds = new google.maps.LatLngBounds();
+	var i = 0
+  jQuery.get("/castles/markers/<%= @castle.id %>", {}, function(data) {
+        jQuery(data).find("photo").each(function() {
+      i += 1;
+      var label = $(this).find('shortDesc').text();
+      var html = $(this).find('thumbnail').text();
+      var lat = $(this).find('plat').text();
+      var lng = $(this).find('plong').text();
+      var point = new google.maps.LatLng(parseFloat(lat),parseFloat(lng));
+      var picid = $(this).find('id').text();
+      var marker = createMarker(point,label,html,i, picid);
+      if (<%= @cpictures.length %> > 1){
+        bounds.extend(point);
+        map.fitBounds(bounds); 
+        };      
+       });
+  side_bar_html += "</ul>";
+  
+  $('#side_bar')[0].innerHTML = side_bar_html;
+      });     
+  });
+</script>

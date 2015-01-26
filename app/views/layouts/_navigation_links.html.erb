@@ -2,7 +2,7 @@
 <% if user_signed_in? %>
 
 <li>
-	<a href="#" class="tiny button split">MyPage<span data-dropdown="drop"></span></a>
+	<a href="#" class="button split">MyPage<span data-dropdown="drop"></span></a>
 	<ul id="drop" class="f-dropdown" data-dropdown-content>
   	<li><%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %></li><br/>
   	<li><%= link_to 'Edit account', edit_user_registration_path %></li>
@@ -10,28 +10,24 @@
   </li>
 <% else %>
 
-<li>
-	<%= link_to new_user_session_path, class: "tiny button split" do %>
-	Signin <span data-dropdown="drop"></span>
-	<% end %>
-	<ul id="drop" class="f-dropdown" data-dropdown-content>
-	  	<li><%= link_to 'Jcastle.info Login', new_user_session_path %></li>
-	  	<li>
-	  		<%= link_to user_omniauth_authorize_path(:facebook) do %><i class="fi-social-facebook"> </i>Facebook Login
-	        <% end %> 
-		</li>
-	  	<li>
-	  		<%= link_to user_omniauth_authorize_path(:google_oauth2) do %><i class="fi-social-google-plus"> </i>Google+ Login
-	        <% end %> 
-		</li>
-	</ul>
+<li class="has-dropdown">
+        <a href="#">Signin</a>
+        <ul class="dropdown">
+		  	<li><%= link_to 'Jcastle.info Login', new_user_session_path %></li>
+		  	<li>
+		  		<%= link_to user_omniauth_authorize_path(:facebook) do %><i class="fi-social-facebook"> </i>Facebook Login
+		        <% end %> 
+			</li>
+		  	<li>
+		  		<%= link_to user_omniauth_authorize_path(:google_oauth2) do %><i class="fi-social-google-plus"> </i>Google+ Login
+		        <% end %> 
+			</li>
+        </ul>
 </li>
 <% end %>
 
 <% if user_signed_in? %>
   <li><%= link_to 'Users', users_path %></li>
 <% end %>
-
- 
 
 

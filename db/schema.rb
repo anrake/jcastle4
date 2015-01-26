@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140817074551) do
+ActiveRecord::Schema.define(version: 20140821231039) do
 
   create_table "castles", force: true do |t|
     t.boolean  "approved",                                   default: false
@@ -80,6 +80,12 @@ ActiveRecord::Schema.define(version: 20140817074551) do
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
 
+  create_table "kokuin_matches", force: true do |t|
+    t.integer "kokuin_id"
+    t.integer "photo_id"
+    t.boolean "combination", default: false
+  end
+
   create_table "kokuins", force: true do |t|
     t.string   "thumbnail"
     t.text     "known_users"
@@ -92,15 +98,6 @@ ActiveRecord::Schema.define(version: 20140817074551) do
     t.integer  "strokes"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "photomaps", force: true do |t|
-    t.integer  "photo_id"
-    t.integer  "imageable_id"
-    t.string   "imageable_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "highlight"
   end
 
   create_table "photos", force: true do |t|

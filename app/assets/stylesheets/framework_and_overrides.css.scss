@@ -1,5 +1,62 @@
 // import the CSS framework
+
+
+#photomapdiv {
+  height: 150px;
+}
+
+$topbar-bg-color: #5F755E !default;
+$topbar-bg: $topbar-bg-color !default;
+$topbar-link-bg: $topbar-bg !default;
+$topbar-link-bg-hover: #B7C8B6 !default;
+$topbar-link-bg-color-hover: #eee !default;
+$topbar-height: 35px !default;
+
 @import "foundation";
+
+body {
+//    background-image: url('seigaiha.gif');
+//    background-color: black;
+  background-image: url('bg.jpg');
+
+}
+
+
+.castlethumbs {
+  @include block-grid(
+    // This controls how many elements will be on each row of the block grid. Set this to whatever number you need, up to the max allowed in the variable.
+    // Available options: 1-12 by default, and false.
+    $per-row: 3,
+
+    // This controls how much space is between each item in the block grid.
+    // Use a variable or any pixel or em values.
+    $spacing: 4px,
+
+    // This controls whether or not base styles come through, set to false to leave out.
+    $base-style: true
+  );
+}
+
+.castle_header {
+  background: rgba(145, 180, 156, 0.33);
+  margin-top: 20px !important;
+  margin-bottom: 10px !important;
+
+//  border: 1px 0 1px 0 #999 solid;
+}
+
+.slideshow {
+//  font-size: 2em;
+}
+
+.row {
+ // border: 1px dotted black;
+}
+
+.row .columns {
+ // border: 1px dotted black;
+}
+
 
 // override for the 'Home' navigation link
 .top-bar .name {
@@ -7,8 +64,25 @@
   line-height: 45px; }
 .top-bar .name a {
   font-weight: normal;
-  color: white;
+  //color: white;
   padding: 0 15px; }
+
+.top-bar {
+//  height: 40px; 
+}
+
+header{
+//  border-bottom: 4px #5F755E solid;
+  margin-bottom: 5px;
+//  -webkit-box-shadow: 0px 4px 0px #5F755E;
+//  -moz-box-shadow: 0px 4px 0px #5F755E;
+//  box-shadow: 0px 4px 0px #5F755E;
+}
+
+.top-bar-section li a {
+//margin: 4px;    
+}
+
 
 // THESE ARE EXAMPLES YOU CAN MODIFY
 // create mixins using Foundation classes
@@ -40,8 +114,55 @@
 // to make views framework-neutral
 main {
   @include twelve-columns;
-  background-color: #eee;
+  background-color: #fcfcfc;
+ // background-repeat: repeat-x;
+  background-image: url('bg.jpg');
   }
+
+.mainbody2 {
+//  background: rgba(238, 238, 238, 0.5);
+  //margin-top: 25px;
+}
+
+nav .button {
+      border: 0;
+      background: #B7C8B6;
+      -webkit-box-shadow: 0;
+      -moz-box-shadow: 0;
+      box-shadow: 0;
+      font-size: 0.75em;
+      color: rgba(255, 255, 255, 0.8);
+      text-transform: uppercase;
+      padding-top: 1em;
+      padding-bottom: 1em;
+      padding-right: 1em;
+      padding-left: 1em;
+      -webkit-box-shadow: 0px 4px 0px #5F755E;
+      -moz-box-shadow: 0px 4px 0px #5F755E;
+      box-shadow: 0px 4px 0px #5F755E;
+    }
+    nav .button:hover {
+      background: #8FBC8F;
+      color: white;
+    }
+    nav .button:active {
+      -webkit-box-shadow: 0px 4px 0px #5F755E;
+      -moz-box-shadow: 0px 4px 0px #5F755E;
+      box-shadow: 0px 4px 0px #5F755E;
+      background: #e78129;
+    }              
+
+.f-dropdown {
+  max-width: 150px;
+}
+
+.f-dropdown li{
+  width: 100%;
+}
+
+
+////////////////////////////////
+
 section {
   @extend .row;
   margin-top: 20px;
@@ -90,3 +211,27 @@ section {
   @extend .radius;
   @extend .tiny;
 }
+
+.top-bar-section ul li {
+//  background: #5F755E;
+//  height: 40px;
+//  line-height: 40px;
+}
+
+.top-bar input {
+  height: 25px;
+  top: 5px;
+  padding: 0px;
+  width: 85%;
+
+//  margin-top: -2px;
+//  background: #5F755E;
+}
+
+.top-bar-section ul {
+  background: #5F755E;
+}
+
+
+
+

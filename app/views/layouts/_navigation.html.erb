@@ -1,12 +1,36 @@
 <%# navigation styled for Zurb Foundation 5 %>
+
 <nav class="top-bar" data-topbar>
   <ul class="title-area">
-    <li class="name"><%= link_to 'Home', root_path %></li>
+    <li class="name"></li>
     <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
   </ul>
   <div class="top-bar-section">
-    <ul>
-      <%= render 'layouts/navigation_links' %>
+    <ul class="right">
+        <li><a href="#"><i class="fi-home"></i></a></li>
+        <li><a href="#">Castles</a></li>
+        <li><a href="#">Map</a></li>
+        <li><a href="#">Structures</a></li>
+        <li><a href="#">Articles</a></li>
+        <%= render 'layouts/navigation_links' %>
+        <li><input type="search" results="5" placeholder="Search..." autosave="5" class="postfix-round"></li>
     </ul>
   </div>
 </nav>
+
+<!--
+<nav class="row">
+    <div class="large-12 columns">
+      <ul class="button-group radius right">
+        <li><a href="#" class="button"><i class="fi-home"></i></a></li>
+        <li><a class="button" href="#">Castles</a></li>
+        <li><a class="button" href="#">Map</a></li>
+        <li><a class="button" href="#">Structures</a></li>
+        <li><a class="button" href="#">Articles</a></li>
+        <li><input type="text" class="button" placeholder="Find Stuff"></li>
+        <%= render 'layouts/navigation_links' %>
+      </ul>
+    </div>
+  </nav>  
+-->
+

@@ -225,6 +225,7 @@ DEPENDENCIES
   hub
   jbuilder (~> 2.0)
   jquery-rails
+  kaminari
   mysql2
   omniauth-facebook
   omniauth-google-oauth2

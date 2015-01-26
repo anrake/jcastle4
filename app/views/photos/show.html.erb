@@ -1,4 +1,87 @@
-<p id="notice"><%= notice %></p>
+<div class="row castle_header">    
+    <div class="large-12 columns">
+    	<div class="row">
+    		<div class="large-8 columns">
+    		<h3><%= @photo.imageable.castle_name_en %> <small> <%= @photo.imageable.castle_name_ja %></small></h3>
+	        <div class="row">
+				    <div class="large-12 columns">
+				    	<%= @photo.imageable.location %> | <%= @photo.imageable.historical_value %>
+				    </div>
+	        </div>
 
-<%= link_to 'Edit', edit_photo_path(@photo) %> |
-<%= link_to 'Back', photos_path %>
+        </div>
+        <div class="large-2 columns">
+  	    </div>
+  	    <div class="large-2 columns">	<%= image_tag "fukushima2.png" %></div>
+  	  </div>
+
+    </div>
+	</div>
+
+
+<div class="row mainbody2">
+	<div class="large-12 columns">
+
+<div class="row">
+  	<div class="large-9 columns">
+	  	<div class="large-10 large-centered columns">
+			<% unless @photo.fullpicture.nil? %>
+   		 		<%= image_tag @photo.fullpicture %>
+		 	<% end %>
+		    <div class="panel">
+		 		   <%= @photo.description %>
+		    </div>
+		</div>
+	</div>
+
+	<div class="large-3 columns">
+	    	  <% if @photo.has_gps? %>
+	    	  GPS
+    			<% end %>
+    			<div class="button-bar">
+					  <ul class="button-group">
+					    <li><a href="#" class="tiny button secondary"><i class="fi-arrow-left slideshow"></i></a></li>
+					    <li><a href="#" class="tiny button secondary"><i class="fi-play-video slideshow"></i></a></li></a></li>
+					    <li><a href="#" class="tiny button secondary"><i class="fi-arrow-right slideshow"></i></a></li></a></li>
+					  </ul>
+					</div>
+
+	    <div id="photomapdiv" class="panel">
+  		</div>
+
+  		 <% unless @cpictures.empty? && @cpictures.length > 1 %>
+			<ul class="castlethumbs">
+				<% for cpicture in @cpictures %>			  
+					<li><%= link_to image_tag(cpicture.thumbnail, class: "has_tip", title: cpicture.shortDesc, :"data-tooltip" => '', :"data-tooltip" => '', :"aria-haspopup"=>"true"), photo_path(cpicture)  %></li>
+		  		<% end %>
+		  	</ul>
+		<% end %>
+	</div>
+</div>
+
+	</div>
+</div>
+
+
+
+<script type="text/javascript"> 
+$(document).ready(function($){
+	var map;
+		var mapOptions = {
+			zoom: <%= @photo.imageable.bestZoom %>,
+			center: new google.maps.LatLng(<%= @photo.plat %>,<%= @photo.plong %>),
+			mapTypeControl: true,
+			navigationControl: true,
+			mapTypeId: google.maps.MapTypeId.SATELLITE
+		};
+		map = new google.maps.Map(document.getElementById('photomapdiv'), mapOptions);
+
+	var marker = new google.maps.Marker({
+    position: new google.maps.LatLng(<%= @photo.plat %>,<%= @photo.plong %>),
+    map: map,
+    title:"Hello World!"
+	});
+
+});
+</script>
+

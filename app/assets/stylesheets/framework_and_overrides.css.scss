@@ -10,9 +10,7 @@ $topbar-bg: $topbar-bg-color !default;
 $topbar-link-bg: $topbar-bg !default;
 $topbar-link-bg-hover: #B7C8B6 !default;
 $topbar-link-bg-color-hover: #eee !default;
-$topbar-height: 35px !default;
-$base-font-size: 14px;
-$rem-base: $base-font-size;
+$topbar-height: rem-calc(35) !default;
 
 @import "foundation";
 

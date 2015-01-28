@@ -5,7 +5,7 @@ db/*.sqlite3
 /db/*.sqlite3-journal
 /log/*
 /tmp/*
-/config/secrets.yml
+# /config/secrets.yml
 **.war
 *.rbc
 *.sassc

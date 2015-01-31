@@ -1,0 +1,22 @@
+
+<div class="row">
+	<div class="large-12 large-centered columns">
+		<h3>Editing <%= @photo.imageable.castle_name_en %> photo
+			<small>   		
+    <%= link_to 'Show', admin_photo_path(@photo) %> | 
+	<%= link_to 'Back', admin_castle_path(@photo.imageable) %></small>
+		</h3>
+		<div class="row">
+    	<div class="large-8 columns">
+			<% if @photo.fullpicture? %>
+				<%= image_tag @photo.fullpicture %>
+			<% end %> 
+		</div>
+    	<div class="large-4 columns">
+	    	<%= render 'form' %>
+		</div>
+
+		</div>
+	</div>
+</div>
+

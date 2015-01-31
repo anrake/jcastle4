@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+  <div class="row">
+    <div class="large-9 large-centered columns">
+    <h3><%= @photo.imageable.castle_name_en %>
+		<small>   		
+		<%= link_to 'Edit', edit_admin_photo_path(@photo) %> |
+		<%= link_to 'Back', admin_photos_path %>
+		</small>
+    </h3>
+		<div class="row">
+    		<div class="large-9 large-centered columns">
+			<% unless @photo.fullpicture.nil? %>
+   		 		<%= image_tag @photo.fullpicture %>
+		 	<% end %>
+		 	</div>
+		</div>
+
+	  	<div class="row">
+				<% for column in Photo.content_columns %>
+    		<div class="large-6 columns">
+					<b><%= column.human_name %></b>: <%= @photo.send(column.name) %>
+				</div>
+		    <% end %>
+		  </div>
+	  </div>
+	</div>
+

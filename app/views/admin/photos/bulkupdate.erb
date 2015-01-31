@@ -1,0 +1,43 @@
+<%= form_for [:admin, @castle], :url => url_for(:controller => 'admin/photos', :action => 'bulkupdatesave') do %>
+  <%= hidden_field_tag(:castle_id, @castle.id) %>
+  <table width="100%" id="bulkupdate">
+    <thead>
+      <tr>
+        <th width="160px">thumb</th>
+        <th width="15px">order</th>
+        <th>Desc</th>
+        <th width="200px">ShortDesc</th>
+        <th width="100px">donated</th>
+        </tr>
+        <tr>
+        <th>photo</th>
+        <th>hide</th>
+        <th>DescJse</th>
+        <th>ShortDescJse</th>
+        <th>donatedlink</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @images.each do |image| %>
+        <%= fields_for "images[]", image do |f| %>
+        <tr>
+        <td><%= image_tag image.highlightPict %></td>
+        <td><%= f.text_field :vieworder %></td>
+        <td><%= f.text_area :description, rows: "4" %></td>
+        <td><%= f.text_area :shortDesc %></td>
+        <td><%= f.text_field :donatedBy %></td>
+        </tr>
+        <tr>
+        <td><%= f.text_field :fullpicture %></td>
+        <td><%= f.check_box :hide_profile %></td>
+        <td><%= f.text_area :descJse, rows: "3" %> </td>
+        <td><%= f.text_area :shortDescJse %></td>
+        <td><%= f.text_field :donatedByLink %></td>
+        </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+  <p><%= submit_tag "Update Images", :class => 'btn btn-success' %></p>
+<% end %>
+

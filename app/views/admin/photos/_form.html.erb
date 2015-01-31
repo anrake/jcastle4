@@ -1,0 +1,19 @@
+
+			<%= simple_form_for [:admin, @photo] do |f| %>
+			  <%= f.error_notification %>
+	        <%= f.input :fullpicture %>
+	        <%= f.input :vieworder, :input_html => {:style => "width: 50px;"} %>
+      		<%= f.input :hide_profile %>
+	     		<%= f.input :ispanorama %>
+ 	   			<%= f.input :description %>
+	  			<%=	f.input :shortDesc %>  	
+	 				<%= f.input :descJse %>
+	  			<%=	f.input :shortDescJse %>  
+					<%= f.input :has_gps %>
+	 				<%= f.input :plat %>
+	 				<%= f.input :plong %>
+ 	     		<%= f.input :donatedBy%>
+	 				<%= f.input :donatedByLink %>
+	 				<%= f.button :submit %>
+		  <% end %>
+

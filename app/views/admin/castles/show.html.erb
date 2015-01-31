@@ -1,0 +1,165 @@
+  <div class="row">
+      
+    <div class="large-9 columns">
+  
+        <h3><%= @castle.castle_name_en %>  <%= @castle.castle_name_ja %>
+        <% unless @castle.approved? %> <small>NOT APPROVED</small> <% end %></h3>
+
+    	<div class="row">
+    		<div class="large-9 large-centered columns">
+        	<% unless @castle.highlighted.nil? %>
+   		 			<%= image_tag @castle.highlighted.fullpicture %>
+		 			<% end %>
+		 		</div>
+		 	</div>
+
+		<div class="row">
+		     	<%= simple_form_for [:admin, @photo] do |p| %>
+		     	<%= p.hidden_field :castle_id, value: @castle.id  %>
+	        <div class="large-4 columns">
+	        		<%= p.input :fullpicture %>
+	  					<%= p.input :description %>
+	  					<%=	p.input :shortDesc %>  	
+          </div>
+ 	        <div class="large-4 columns">
+	        		<%= p.input :vieworder, :input_html => {:style => "width: 50px;"} %>
+	  					<%= p.input :descJse %>
+	  					<%=	p.input :shortDescJse %>  	
+          </div>
+          <div class="large-4 columns">
+           		<%= p.input :hide_profile %>
+	        		<%= p.input :donatedBy%>
+	  				<%= p.input :donatedByLink %>
+	  	   			<%= p.button :submit %>
+          </div>
+						<% end %>
+        </div>
+        <div class="row">
+			  <div class="large-12 columns">
+			  	<table>
+			  		<tr>
+			  			<td><b>alt name: </b><%= @castle.castle_name_alt %></td>
+			  			<td><b>founder: </b><%= @castle.founder %></td>
+			  			</tr><tr>
+			  			<td><b>kamon: </b><%= @castle.kamon %></td>
+			  			<td><b>kamon_fam: </b><%= @castle.kamon_fam %></td>
+			  			</tr><tr>
+			  			<td><b>year: </b><%= @castle.year %></td>
+			  			<td><b>reconstructed: </b><%= @castle.year_reconstructed %></td>
+			  			</tr><tr>
+			  			<td><b>type: </b><%= @castle.castle_type %></td>
+			  			<td><b>structure: </b><%= @castle.structure %></td>
+			  			</tr><tr>
+			  			<td><b>artifacts: </b><%= @castle.artifacts %></td>
+			  			<td><b>location: </b><%= @castle.location %></td>
+			  			</tr><tr>
+			  			<td><b>lat: </b><%= @castle.clatitude %></td>
+			  			<td><b>long: </b><%= @castle.clongitude %></td>
+			  			</tr><tr>
+			  			<td><b>icon: </b><%= @castle.gmapicn %></td>
+			  			<td><b>zoom: </b><%= @castle.bestZoom %></td>
+			  			</tr><tr>
+			  			<td><b>map: </b><%= @castle.bestMap %></td>
+			  			<td><b>webname: </b><%= @castle.pro_web_name %></td>
+			  			</tr><tr>
+			  			<td colspan="2"><b>website: </b><%= @castle.website %></td>
+			  			</tr><tr>
+			  			<td><b>access: </b><%= @castle.access %></td>
+			  			<td><b>visitor info: </b><%= @castle.visitorInfo %></td>
+			  			</tr><tr>
+			  			<td><b>visited: </b><%= @castle.visited %></td>
+			  			<td><b>condition: </b><%= @castle.condition %></td>
+			  			</tr><tr>
+			  			<td><b>pref: </b><%= @castle.prefecture %></td>
+			  			<td><b>histval: </b><%= @castle.historical_value %></td>
+			  			</tr><tr>
+			  			<td><b>rating: </b><%= @castle.rating %></td>
+			  			<td><b>year visited: </b><%= @castle.year_visited %></td>
+			  			</tr><tr>
+			  			<td><b>top_100: </b><%= @castle.top_100 %></td>
+			  			<td><b>has_nt: </b><%= @castle.has_NT %></td>
+			  			</tr><tr>
+			  			<td><b>has_ic: p</b><%= @castle.has_ICP %></td>
+			  			<td><b>unesco: </b><%= @castle.unesco %></td>
+			  			</tr><tr>
+			  			<td><b>dest: </b><%= @castle.destination %></td>
+			  			<td><b>period: </b><%= @castle.period %></td>
+			  			</tr><tr>
+			  			<td><b>time req'd: </b><%= @castle.timeRequired %></td>
+			  			<td><b>manual update: </b><%= @castle.manualUpdate %></td>
+			  			</tr><tr>
+			  			<td><b>Castle elev: </b><%= @castle.castleElev %></td>
+			  			<td><b>eki elev: </b><%= @castle.ekiElev %></td>
+			  			</tr><tr>
+			  			<td><b>elev change: </b><%= @castle.elevChange %></td>
+			  			<td><b>eki latlng: </b><%= @castle.ekiLatLng %></td>
+			  			</tr><tr>
+			  			<td><b>notes: </b><%= @castle.notes %></td>
+			  			<td><b>notesJse: </b><%= @castle.notesJse %></td>
+			  			</tr><tr>
+			  			<td colspan="2"><b>history: </b><%= @castle.history %></td>
+			  			</tr><tr>
+			  			<td><b>short desc: </b><%= @castle.shortdesc %></td>
+			  		</tr>
+			  	</table>
+				</div>
+				</div>
+    </div> 
+ 
+    <aside class="large-3 columns">
+
+      <div class="panel">
+        <h5>Functions</h5>
+        	<ul>			
+        	<li><%= link_to 'Edit Castle', edit_admin_castle_path(@castle) %></li>
+        	<li><%= link_to 'Edit All Photos', admin_bulk_update_path(@castle) %></li>
+        	<li><%= link_to 'Castle List', admin_castles_path %></li>
+					<li>Admin Dahsboard</li>
+        	</ul>
+      </div>
+
+      <div class="panel">
+      <h5>Add multiple new photos</h5>
+			<%= form_for [:admin, @photo], :url => url_for(:controller => 'admin/photos', :action => 'add_many') do %>
+			<%= hidden_field_tag(:castle_id, @castle.id) %>
+  		<%= label_tag(:photonum, "how many images?") %>
+  		<%= text_field_tag(:photonum) %>
+  		<%= label_tag(:shortname, "castle shortname?") %>
+  		<%= text_field_tag(:shortname) %>
+  		<%= submit_tag("Go!") %>
+			<% end %>
+			</div>
+ 
+    </aside>
+ 
+  </div>
+
+  						<% unless @cpictures.empty? && @cpictures.length > 1 %>
+						  <h4>Other Views:</h4>
+ 							 <table border="1" cellspacing="0" cellpadding="0">
+								<tr>
+									<th>O</th>
+									<th width="150px">Photo</th>
+									<th>End</th>
+									<th>Jse</th>
+									<th>jpg</th>
+									<th>o</th>
+								</tr>
+							  <% for cpicture in @cpictures %>			  
+								<tr>
+									<td> <%= cpicture.vieworder %> </td>
+									<td><%= image_tag cpicture.highlightPict %></td>
+									<td> <%= cpicture.description %> <hr /> <%= cpicture.shortDesc %> </td>
+									<td> <%= cpicture.descJse %> <hr /> <%= cpicture.shortDescJse %>  </td>
+									<td> <%= cpicture.fullpicture %> 
+										<% if cpicture.highlighted? %><br /><b>highlighted</b><% end %>
+										<% if cpicture.hide_profile? %><br /><em>(hidden)</em><% end %>
+										<% if cpicture.has_gps? %><br />has gps<% end %>
+									</td>
+									<td>
+										<%= link_to 'Show', admin_photo_path(cpicture) %><br /><%= link_to 'Edit', edit_admin_photo_path(cpicture) %><br /><%= link_to 'Destroy', admin_photo_path(cpicture), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+								</tr>
+  							<% end %>
+  						</table>
+						<% end %>
+

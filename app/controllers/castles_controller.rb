@@ -4,7 +4,7 @@ class CastlesController < ApplicationController
   # GET /castles
   # GET /castles.json
   def index
-    @castles = Castle.all
+    @castles = Castle.where(approved: '1').order("castle_name_en ASC")
   end
 
   # GET /castles/1
@@ -14,11 +14,9 @@ class CastlesController < ApplicationController
   end
 
   def markers
-    @mappedpics = @castle.photos
+    @mappedpics = @castle.photos.where("plat > 0")
     render :xml => @mappedpics.to_xml
-
   end
-
 
   # GET /castles/new
   #def new

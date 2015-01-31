@@ -1,4 +1,26 @@
-<h3>Listing castles</h3>
+<div class="row">
+  <div class="large-12 columns"><h2>Listing <%= @castles.length %> castles</h2></div>
+</div>
+<table>
+  <thead>
+    <tr>
+    <th>ID</th>
+    <th>castle name</th>
+    <th>cnamejse</th>
+    <th>photos</th>
+    </tr>
+  </thead>
 
-future home of thinking sphinx
+  <tbody>
+    <% @castles.each do |castle| %>
+      <tr>
+        <td><%= castle.id %></td>
+        <td><%= link_to castle.castle_name_en, castle_path(castle) %></td>
+        <td><%= castle.castle_name_ja %></td>
+        <td><%= castle.photos.length %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
+<br>

@@ -10,7 +10,7 @@
     <%= javascript_include_tag "vendor/modernizr" %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
-
+<meta name="google-translate-customization" content="34bc051e533ea702-133a99a5e133d983-g2af6cd80cc047870-21"></meta>
   <%= yield "page_header" %>
 
   </head>
@@ -25,8 +25,8 @@
           <%= image_tag "/images/design/theme1/jcastle_logo.png" %>        
         </div>
         <div class="large-9 columns">
+          
         </div>
-      </div>
 
       <div class="row">        
         <div class="large-12 columns">  
@@ -35,14 +35,20 @@
         </div>
       </div>
 
+
     </main>
 
     <footer class="row">
       <section class="small-4 columns">
-      Copyright &copy; 2015
+      Copyright &copy; 2015 All Rights Reserved
       </section>
       <section class="small-8 columns">
-      All rights reserved.
+      <div id="google_translate_element"></div><script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, gaTrack: true, gaId: 'UA-318691-1'}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>      </div>
+
       </section>
     </footer>
   </body>

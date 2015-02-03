@@ -32,7 +32,7 @@ class Admin::PhotosController < ApplicationController
 
     respond_to do |format|
       if @photo.save
-        format.html { redirect_to (admin_castle_url @imageable), notice: 'Photo was successfully created.' }
+        format.html { redirect_to polymorphic_path([:admin, @imageable]), notice: 'Photo was successfully created.' }
         format.json { render action: 'show', status: :created, location: @photo }
       else
         format.html { render action: 'new' }

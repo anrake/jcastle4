@@ -5,10 +5,10 @@
   height: 150px;
 }
 
-$topbar-bg-color: #5F755E !default;
-$topbar-bg: $topbar-bg-color !default;
+//$topbar-bg-color: none !default;
+$topbar-bg: url('http://www.postalmuseum.jp/img/bg_green1.png') !default;
 $topbar-link-bg: $topbar-bg !default;
-$topbar-link-bg-hover: #B7C8B6 !default;
+$topbar-link-bg-hover: #cfd5ce !default;
 $topbar-link-bg-color-hover: #eee !default;
 
 
@@ -229,7 +229,7 @@ section {
 }
 
 .top-bar-section ul li {
-  background: #5F755E;
+  background: url('http://www.postalmuseum.jp/img/bg_green1.png');
 }
 
 

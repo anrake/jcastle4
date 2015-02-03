@@ -1,0 +1,105 @@
+<p id="notice"><%= notice %></p>
+
+<%= link_to 'Edit', edit_resource_path(@resource) %> |
+<%= link_to 'Back', resources_path %>
+
+		<div class="row">
+		     	<%= simple_form_for [:admin, @photo] do |p| %>
+		     	<%= p.hidden_field :resource_id, value: @resource.id  %>
+	        <div class="large-4 columns">
+	        		<%= p.input :fullpicture %>
+	  					<%= p.input :description %>
+	  					<%=	p.input :shortDesc %>  	
+          </div>
+ 	        <div class="large-4 columns">
+	        		<%= p.input :vieworder, :input_html => {:style => "width: 50px;"} %>
+	  					<%= p.input :descJse %>
+	  					<%=	p.input :shortDescJse %>  	
+          </div>
+          <div class="large-4 columns">
+           		<%= p.input :hide_profile %>
+	        		<%= p.input :donatedBy%>
+	  				<%= p.input :donatedByLink %>
+	  	   			<%= p.button :submit %>
+          </div>
+						<% end %>
+        </div>
+
+<div class="row castle_header">    
+    <div class="large-12 columns">
+    	<div class="row">
+    		<div class="large-8 columns">
+    		<h3><%= @resource.name_en %> <small> <%= @resource.name_ja %></small></h3>
+	        <div class="row">
+				    <div class="large-12 columns">
+				    </div>
+	        </div>
+
+        </div>
+        <div class="large-2 columns">
+  	    </div>
+  	    <div class="large-2 columns"></div>
+  	  </div>
+
+    </div>
+	</div>
+
+
+<div class="row mainbody2">
+	<div class="large-12 columns">
+
+<div class="row">
+  	<div class="large-9 columns">
+	  	<div class="large-10 large-centered columns">
+			<% unless @resource.fullpicture.nil? %>
+   		 		<%= image_tag @resource.fullpicture %>
+		 	<% end %>
+		    <div class="panel">
+		 		   <%=raw @resource.description %>
+		    </div>
+		</div>
+	</div>
+
+	<div class="large-3 columns">
+	    	  <% if @resource.has_gps? %>
+	    	  GPS
+    			<% end %>
+    			<div class="button-bar">
+					  <ul class="button-group">
+					    <li><a href="#" class="tiny button secondary"><i class="fi-arrow-left slideshow"></i></a></li>
+					    <li><a href="#" class="tiny button secondary"><i class="fi-play-video slideshow"></i></a></li></a></li>
+					    <li><a href="#" class="tiny button secondary"><i class="fi-arrow-right slideshow"></i></a></li></a></li>
+					  </ul>
+					</div>
+
+	    <div id="photomapdiv" class="panel">
+  		</div>
+
+	</div>
+</div>
+
+	</div>
+</div>
+
+
+
+<script type="text/javascript"> 
+$(document).ready(function($){
+	var map;
+		var mapOptions = {
+			zoom: 13,
+			center: new google.maps.LatLng(<%= @resource.rlat %>,<%= @resource.rlong %>),
+			mapTypeControl: true,
+			navigationControl: true,
+			mapTypeId: google.maps.MapTypeId.SATELLITE
+		};
+		map = new google.maps.Map(document.getElementById('photomapdiv'), mapOptions);
+
+	var marker = new google.maps.Marker({
+    position: new google.maps.LatLng(<%= @resource.rlat %>,<%= @resource.rlong %>),
+    map: map,
+    title:"Hello World!"
+	});
+
+});
+</script>

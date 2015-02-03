@@ -1,0 +1,24 @@
+
+			<%= simple_form_for [:admin, @resource] do |f| %>
+			  <%= f.error_notification %>
+		   		<%= f.input :resource_id %>
+	     		<%= f.input :resourceType %>
+	     		<%= f.input :name_en %>
+	     		<%= f.input :name_ja %>
+	     		<%= f.input :name_en %>
+	     		<%= f.input :name_ja %>
+	     		<%= f.input :name_r %>
+	       	   <%= f.input :fullpicture %>
+ 	     	   <%= f.input :thumbnail %>
+ 	      		<%= f.input :highlightPict %>
+ 	   			<%= f.input :description %>
+	  			<%=	f.input :shortDesc %>  	
+	 			<%= f.input :descJse %>
+	  			<%=	f.input :shortDescJse %>  
+				<%= f.input :has_gps %>
+ 				<%= f.input :rlat %>
+ 				<%= f.input :rlong %>
+	 			<%= f.button :submit %>
+		  <% end %>
+
+

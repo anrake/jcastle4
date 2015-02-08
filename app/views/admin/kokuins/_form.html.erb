@@ -1,0 +1,19 @@
+
+<%= simple_form_for [:admin, @kokuin] do |f| %>
+	<%= f.error_notification %>
+	<%= f.input :thumbnail %>
+	<%= f.input :known_users %>
+	<%= f.input :description %>
+	<%= f.input :shortDesc %>
+	<%= f.input :descJse %>
+	<%= f.input :shortDescJse %>
+	<%= f.input :ktype %>
+	<%= f.input :ktype2 %>
+	<%= f.input :strokes %>
+	<%= f.button :submit %>
+
+  <%= f.association :photos, as: :select, label_method: :thumbnail %>
+
+
+<% end %>
+

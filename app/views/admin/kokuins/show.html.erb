@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<%= link_to 'Edit', edit_admin_kokuin_path(@kokuin) %> |
+<%= link_to 'Back', kokuins_path %>
+<br />
+ID:<%= @kokuin.id %><br />
+Thumb:<%= @kokuin.thumbnail %><br />
+Desc:<%= @kokuin.description %><br />
+ShortDesc:<%= @kokuin.shortDesc %><br />
+Users:<%= @kokuin.known_users %><br />
+KType:<%= @kokuin.ktype %><br />
+KType2:<%= @kokuin.ktype2 %><br />
+
+photos: <% @kpictures.each do |k| %><%= k.id %> - <%end%>
+
+		<div class="row">
+		     	<%= simple_form_for [@kmatch] do |k| %>
+		     	<%= p.hidden_field :kokuin_id, value: @kokuin.id  %>
+          <div class="large-4 columns">
+           		<%= p.input :combination %>
+	        	<%= p.input :photo_id %>
+	  	   		<%= p.button :submit %>
+          </div>
+          		<% end %>
+        </div>
+
+
+

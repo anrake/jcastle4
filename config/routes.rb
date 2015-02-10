@@ -5,6 +5,7 @@ Jcastle4::Application.routes.draw do
     get 'dashboard/index'
     get '', to: 'dashboard#index', as: '/' 
     resources :resources 
+    resources :kokuin_matches
     resources :photos do
       collection do
         post 'add_many'

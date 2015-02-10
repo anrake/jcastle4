@@ -34,7 +34,7 @@ class Admin::CastlesController < ApplicationController
 
     respond_to do |format|
       if @castle.save
-        format.html { redirect_to admin_castles_url, notice: 'Castle was successfully created in Admin Controller.' }
+        format.html { redirect_to admin_castle_path(@castle), notice: 'Castle was successfully created in Admin Controller.' }
         format.json { render action: 'show', status: :created, location: @castle }
       else
         format.html { render action: 'new' }

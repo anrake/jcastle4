@@ -1,10 +1,10 @@
 <p id="notice"><%= notice %></p>
 
 <%= link_to 'Edit', edit_admin_kokuin_path(@kokuin) %> |
-<%= link_to 'Back', kokuins_path %>
+<%= link_to 'Back', admin_kokuins_path %>
 <br />
 ID:<%= @kokuin.id %><br />
-Thumb:<%= @kokuin.thumbnail %><br />
+Thumb:<%= image_tag "resource/kokuin/full/" + @kokuin.thumbnail %><br />
 Desc:<%= @kokuin.description %><br />
 ShortDesc:<%= @kokuin.shortDesc %><br />
 Users:<%= @kokuin.known_users %><br />
@@ -14,15 +14,45 @@ KType2:<%= @kokuin.ktype2 %><br />
 photos: <% @kpictures.each do |k| %><%= k.id %> - <%end%>
 
 		<div class="row">
-		     	<%= simple_form_for [@kmatch] do |k| %>
-		     	<%= p.hidden_field :kokuin_id, value: @kokuin.id  %>
+		     	<%= simple_form_for [:admin, @kmatch] do |k| %>
+		     	<%= k.hidden_field :kokuin_id, value: @kokuin.id  %>
           <div class="large-4 columns">
-           		<%= p.input :combination %>
-	        	<%= p.input :photo_id %>
-	  	   		<%= p.button :submit %>
+           		<%= k.input :combination %>
+	        	<%= k.input :photo_id %>
+	  	   		<%= k.button :submit %>
           </div>
           		<% end %>
         </div>
+
+<% for km in @kokuin.kokuin_matches %>
+	<%= km.photo.id %> - <%= link_to '[x]', admin_kokuin_match_path(km), method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
+
+<% unless @kpictures.empty? && @kpictures.length > 1 %>
+	<h4>Other Views:</h4>
+		<table border="1" cellspacing="0" cellpadding="0">
+			<tr>
+			<th>ID</th>
+			<th width="150px">Photo</th>
+			<th>Eng</th>
+			<th>Jse</th>
+			<th>jpg</th>
+			<th>o</th>
+			</tr>
+		<% for kpicture in @kpictures %>
+			<tr>
+				<td><%= kpicture.id %> </td>
+				<td><%= image_tag kpicture.thumbnail %></td>
+				<td> <%= kpicture.description %> <br />(<i><%= kpicture.shortDesc %></i>)</td>
+				<td> <%= kpicture.descJse %> <br />(<i><%= kpicture.shortDescJse %></i>)  </td>
+				<td> <%= kpicture.fullpicture %>
+									<td>
+										<%= link_to 'V', admin_photo_path(kpicture) %>-<%= link_to 'E', edit_admin_photo_path(kpicture) %>-<%= link_to 'x', admin_kokuin_match_path(kpicture), method: :delete, data: { confirm: 'Are you sure?' } %>
+</td>
+								</tr>
+  							<% end %>
+  						</table>
+						<% end %>
 
 
 

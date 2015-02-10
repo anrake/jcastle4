@@ -9,11 +9,12 @@
   <tbody>
     <% @kokuins.each do |kokuin| %>
       <tr>
+      <td><%= image_tag 'resource/kokuin/thumbs/' + kokuin.thumbnail %></td>
         <td><%= kokuin.id %>
         <td><%= kokuin.shortDesc %>
-        <td><%= link_to 'Show', kokuin %></td>
-        <td><%= link_to 'Edit', edit_kokuin_path(kokuin) %></td>
-        <td><%= link_to 'Destroy', kokuin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', admin_kokuin_path(kokuin) %></td>
+        <td><%= link_to 'Edit', edit_admin_kokuin_path(kokuin) %></td>
+        <td><%= link_to 'Destroy', admin_kokuin_path(kokuin), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -21,4 +22,4 @@
 
 <br>
 
-<%= link_to 'New Kokuin', new_kokuin_path %>
+<%= link_to 'New Kokuin', new_admin_kokuin_path %>

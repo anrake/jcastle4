@@ -31,7 +31,7 @@ class Admin::KokuinsController < ApplicationController
 
     respond_to do |format|
       if @kokuin.save
-        format.html { redirect_to @kokuin, notice: 'Kokuin was successfully created.' }
+        format.html { redirect_to admin_kokuin_path(@kokuin), notice: 'Kokuin was successfully created.' }
         format.json { render action: 'show', status: :created, location: @kokuin }
       else
         format.html { render action: 'new' }
@@ -45,7 +45,7 @@ class Admin::KokuinsController < ApplicationController
   def update
     respond_to do |format|
       if @kokuin.update(kokuin_params)
-        format.html { redirect_to @kokuin, notice: 'Kokuin was successfully updated.' }
+        format.html { redirect_to admin_kokuin_path, notice: 'Kokuin was successfully updated.' }
         format.json { render action: 'show', status: :ok, location: @kokuin }
       else
         format.html { render action: 'edit' }
@@ -59,7 +59,7 @@ class Admin::KokuinsController < ApplicationController
   def destroy
     @kokuin.destroy
     respond_to do |format|
-      format.html { redirect_to kokuins_url }
+      format.html { redirect_to admin_kokuins_url }
       format.json { head :no_content }
     end
   end

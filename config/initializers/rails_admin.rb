@@ -1,5 +1,8 @@
 RailsAdmin.config do |config|
 
+  ## == Pundit ==
+  config.authorize_with :pundit
+
   config.model 'Castle' do
     object_label_method do
       :custom_label_method
@@ -25,10 +28,10 @@ RailsAdmin.config do |config|
   ### Popular gems integration
 
   ## == Devise ==
-  # config.authenticate_with do
-  #   warden.authenticate! scope: :user
-  # end
-  # config.current_user_method(&:current_user)
+   config.authenticate_with do
+     warden.authenticate! scope: :user
+   end
+   config.current_user_method(&:current_user)
 
   ## == Cancan ==
   # config.authorize_with :cancan

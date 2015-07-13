@@ -1,10 +1,12 @@
 class CastlesController < ApplicationController
   before_action :set_castle, only: [:show, :markers]
+  after_action :verify_policy_scoped, :only => :index
 
   # GET /castles
   # GET /castles.json
   def index
-    @castles = Castle.where(approved: '1').order("castle_name_en ASC")
+#    @castles = Castle.where(approved: '1').order("castle_name_en ASC")
+    @castles = policy_scope(Castle)
   end
 
   # GET /castles/1

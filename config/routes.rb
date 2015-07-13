@@ -40,7 +40,9 @@ Jcastle4::Application.routes.draw do
   get 'castles/markers/:id' => 'castles#markers'
 
 
-  root :to => "home#index"
+#  root :to => "home#index"
+
+root to: "home#index"
 
 #  devise_for :users, :controllers => {:registrations => "registrations"}
 #  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }

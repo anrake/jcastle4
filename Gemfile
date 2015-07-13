@@ -20,6 +20,7 @@ gem 'mysql2'
 gem 'pundit'
 gem 'simple_form'
 gem 'rails_admin'
+gem "rails_admin_pundit", :github => "sudosu/rails_admin_pundit"
 gem "kaminari"
 gem 'responders', '~> 2.0'
 group :development do

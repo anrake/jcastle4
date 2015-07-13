@@ -17,8 +17,8 @@ class ApplicationController < ActionController::Base
   private
 
   def user_not_authorized
-    flash[:alert] = "Access denied."
-    redirect_to (request.referrer || root_path)
+    flash[:alert] = "Access denied. You are not authorized for this action. If you feel you have reached this in error, please contact the admin."
+    redirect_to (request.referrer || '/' )
   end
 
 before_filter :configure_permitted_parameters, if: :devise_controller?

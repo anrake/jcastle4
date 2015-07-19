@@ -31,6 +31,8 @@
 		    <div class="panel">
 		 		   <%= @photo.description %>
 		    </div>
+		    <%= render partial: "comments/comments", locals: {commentable: @photo} %>
+
 		</div>
 	</div>
 

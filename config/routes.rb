@@ -1,5 +1,7 @@
 Jcastle4::Application.routes.draw do
 
+#  resources :comments
+
 #admin_path
   namespace :admin do
     get 'dashboard/index'
@@ -29,14 +31,19 @@ Jcastle4::Application.routes.draw do
 
   resources :resources
 
-  resources :photos
+  resources :photos do
+    resources :comments, module: :photos
+  end
 
 #  get 'admin/photos-bulk-update' => 'photos#bulk_update', :as => 'admin_images_bulk_update'
 #  post 'admin/photos-bulk-update-save' => 'photos#bulk_update_save', :as => 'admin_images_bulk_update_save'
 
   resources :kokuins
 
-  resources :castles
+  resources :castles do
+    resources :comments, module: :castles
+  end
+ 
   get 'castles/markers/:id' => 'castles#markers'
 
 

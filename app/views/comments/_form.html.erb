@@ -1,0 +1,17 @@
+<a href="#" data-dropdown="hover1" data-options="is_hover:true; hover_timeout:5000">Add a comment</a>
+<div id="hover1" data-dropdown-content class="f-dropdown content" aria-hidden="true" tabindex="-1">
+<%= simple_form_for [commentable, Comment.new] do |f| %>
+  <div>
+  	<% unless user_signed_in? %>
+		<%= f.input :commenter, label: "Name", placeholder: "Your name or alias here" %>
+		<%= f.input :commenter_website, label: "Website", as: :url, placeholder: "Your website (optional)" %>
+		<%= f.input :commenter_email, label: "email", as: :email, placeholder: "optional" %>
+		<%= recaptcha_tags hl: :en%>
+	<% end %>
+	    <%= f.input :comment, placeholder: "Type your text here" %> 
+
+  </div>
+  <%= f.button :submit, class: "tiny button" %>
+<% end %>
+</div>
+

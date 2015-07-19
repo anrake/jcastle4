@@ -13,6 +13,7 @@ class CastlesController < ApplicationController
   # GET /castles/1.json
   def show
     @cpictures = @castle.photos.order("vieworder ASC")
+    @comments = @castle.comments
   end
 
   def markers

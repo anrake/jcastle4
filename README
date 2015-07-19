@@ -57,3 +57,7 @@ Preferences:
 ________________________
 
 License
+
+NOTES:  
+polymorphic comments code from: https://gorails.com/episodes/comments-with-polymorphic-associations
+

@@ -1,0 +1,19 @@
+<div id="comments_list" class="panel">
+<ul>
+	<% commentable.comments.each do |comment| %>
+	  <li>
+	  <% if comment.user_id? %> 
+			<% @user = User.find(comment.user_id)%>
+			<%= @user.name %> <small><%= comment.created_at.strftime("%B %d, %Y at %I:%M %p") %></small>
+			<% else %> 
+			<%= comment.commenter %>
+		<% end %><br />
+	    <%= comment.comment %>
+
+	    <% if policy(comment).destroy? %>
+		<%= link_to 'Destroy', [@castle,comment], method: :delete, data: { confirm: 'Are you sure?' } %>
+		<% end %>
+
+	  </li>
+	<% end %>
+</div>

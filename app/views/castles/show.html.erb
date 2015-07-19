@@ -93,6 +93,8 @@
 			  			</tr>
 			  	</table>
 			  	<div id="map_canvas" style="height: 350px"></div>
+            <%= render partial: "comments/form", locals: {commentable: @castle} %>
+            <%= render partial: "comments/comments", locals: {commentable: @castle} %>
 		</div>
 
 		<div class="large-3 columns">

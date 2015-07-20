@@ -24,6 +24,7 @@ gem "rails_admin_pundit", :github => "sudosu/rails_admin_pundit"
 gem "kaminari"
 gem 'responders', '~> 2.0'
 gem "recaptcha", :require => "recaptcha/rails"
+gem 'rails_12factor'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'

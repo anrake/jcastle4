@@ -32,6 +32,19 @@
 		</div>
 
 		<div class="large-3 columns">
+        <div class="panel">        
+          <% if user_signed_in? %>
+            <%= current_user.name %>'s rating
+            <div id="user_star"></div>
+            (avg:<%= @castle.rating_average%>)
+            <br />
+            <div class="button tiny">+ My Visits</div>
+          <% else %> 
+            Average Rating  
+            <div id="star"></div>
+          <% end %>
+        </div>
+
 	      <div class="panel">
 		      Founder: <%= @castle.founder %>
 		      <br />Year: <%= @castle.year %>
@@ -209,3 +222,32 @@ $(document).ready(function($){
       });     
   });
 </script>
+
+
+<% if user_signed_in? %>
+  <script>
+    $('#user_star').raty({
+      score: <%= @rate.stars %>,
+      path: '/assets',
+      half: true,
+      hints: ['1 star', '2 stars', '3 stars', '4 stars', '5 stars'],
+      cancel: true,
+      click: function(score, evt) {
+        $.ajax({
+          url: '/rates/' + <%= @rate.id %>,
+          type: 'PATCH',
+          data: { stars: score }
+        });
+      }
+    });
+  </script>
+<% else %>
+  <script>
+    $('#star').raty({
+      readOnly: true,
+      halfShow: true,
+      score: <%= @castle.rating_average %>,
+      path: '/assets'
+    });
+  </script>
+<% end %> 

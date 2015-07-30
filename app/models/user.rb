@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
          :omniauth_providers => [:facebook, :twitter, :google_oauth2]
 
   has_many :identities
+  has_many :rates
 
   TEMP_EMAIL = 'change@me.com'
   TEMP_EMAIL_REGEX = /change@me.com/

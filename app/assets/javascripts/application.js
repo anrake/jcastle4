@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require foundation
+//= require jquery.raty.js
 //= require_tree .
 $(function() {
   $(document).foundation();

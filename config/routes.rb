@@ -1,7 +1,5 @@
 Jcastle4::Application.routes.draw do
 
-#  resources :comments
-
 #admin_path
   namespace :admin do
     get 'dashboard/index'
@@ -60,5 +58,7 @@ root to: "home#index"
   }
 
   resources :users
+  resources :rates, only: :update
+
 end
 

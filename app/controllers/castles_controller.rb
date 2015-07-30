@@ -14,6 +14,14 @@ class CastlesController < ApplicationController
   def show
     @cpictures = @castle.photos.order("vieworder ASC")
     @comments = @castle.comments
+
+    if user_signed_in?
+      @rate = Rate.unscope(:where).where(castle_id: @castle.id, user_id: current_user.id).first 
+      unless @rate 
+        @rate = Rate.create(castle_id: @castle.id, user_id: current_user.id, stars: 0) 
+      end
+    end
+
   end
 
   def markers

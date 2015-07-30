@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150715122502) do
+ActiveRecord::Schema.define(version: 20150722130125) do
 
   create_table "castles", force: :cascade do |t|
     t.boolean  "approved",           limit: 1,                             default: false
@@ -71,13 +71,13 @@ ActiveRecord::Schema.define(version: 20150715122502) do
     t.text     "comment",           limit: 65535
     t.integer  "commentable_id",    limit: 4
     t.string   "commentable_type",  limit: 255
-    t.string   "commenter",         limit: 255,   default: "Anonymous"
+    t.string   "commenter",         limit: 255
     t.string   "commenter_website", limit: 255
     t.string   "commenter_email",   limit: 255
     t.integer  "page_id",           limit: 4
     t.integer  "user_id",           limit: 4
-    t.datetime "created_at",                                            null: false
-    t.datetime "updated_at",                                            null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at"
   end
 
   create_table "identities", force: :cascade do |t|
@@ -139,6 +139,17 @@ ActiveRecord::Schema.define(version: 20150715122502) do
     t.string   "imageable_type", limit: 255
   end
 
+  create_table "rates", force: :cascade do |t|
+    t.integer  "castle_id",  limit: 4
+    t.integer  "user_id",    limit: 4
+    t.integer  "stars",      limit: 4, default: 0
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
+
+  add_index "rates", ["castle_id"], name: "index_rates_on_castle_id", using: :btree
+  add_index "rates", ["user_id"], name: "index_rates_on_user_id", using: :btree
+
   create_table "resources", force: :cascade do |t|
     t.string   "name_en",       limit: 255
     t.string   "name_ja",       limit: 255
@@ -186,4 +197,6 @@ ActiveRecord::Schema.define(version: 20150715122502) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "rates", "castles"
+  add_foreign_key "rates", "users"
 end

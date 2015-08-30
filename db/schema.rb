@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150722130125) do
+ActiveRecord::Schema.define(version: 20150817055331) do
 
   create_table "castles", force: :cascade do |t|
     t.boolean  "approved",           limit: 1,                             default: false
@@ -67,6 +67,11 @@ ActiveRecord::Schema.define(version: 20150722130125) do
     t.datetime "updated_at"
   end
 
+  create_table "castles_pages", id: false, force: :cascade do |t|
+    t.integer "castle_id", limit: 4
+    t.integer "page_id",   limit: 4
+  end
+
   create_table "comments", force: :cascade do |t|
     t.text     "comment",           limit: 65535
     t.integer  "commentable_id",    limit: 4
@@ -113,6 +118,18 @@ ActiveRecord::Schema.define(version: 20150722130125) do
     t.datetime "updated_at"
   end
 
+  create_table "pages", force: :cascade do |t|
+    t.integer  "user_id",      limit: 4
+    t.string   "title",        limit: 255
+    t.text     "content",      limit: 65535
+    t.text     "short_desc",   limit: 65535
+    t.string   "page_type",    limit: 255
+    t.string   "comment_pref", limit: 255,   default: "1"
+    t.string   "rating_pref",  limit: 255,   default: "MyRatings"
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
+  end
+
   create_table "photos", force: :cascade do |t|
     t.integer  "castle_id",      limit: 4
     t.integer  "property_id",    limit: 4
@@ -137,14 +154,15 @@ ActiveRecord::Schema.define(version: 20150722130125) do
     t.datetime "updated_at"
     t.integer  "imageable_id",   limit: 4
     t.string   "imageable_type", limit: 255
+    t.integer  "user_id",        limit: 4
   end
 
   create_table "rates", force: :cascade do |t|
     t.integer  "castle_id",  limit: 4
     t.integer  "user_id",    limit: 4
-    t.integer  "stars",      limit: 4, default: 0
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.float    "stars",      limit: 24, default: 0.0
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   add_index "rates", ["castle_id"], name: "index_rates_on_castle_id", using: :btree
@@ -172,12 +190,12 @@ ActiveRecord::Schema.define(version: 20150722130125) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  limit: 255, default: "", null: false
-    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "email",                  limit: 255,   default: "", null: false
+    t.string   "encrypted_password",     limit: 255,   default: "", null: false
     t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
+    t.integer  "sign_in_count",          limit: 4,     default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",     limit: 255
@@ -192,6 +210,7 @@ ActiveRecord::Schema.define(version: 20150722130125) do
     t.integer  "role",                   limit: 4
     t.string   "provider",               limit: 255
     t.string   "uid",                    limit: 255
+    t.text     "self_intro",             limit: 65535
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

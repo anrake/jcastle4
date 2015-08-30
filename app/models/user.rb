@@ -7,6 +7,10 @@ class User < ActiveRecord::Base
 
   has_many :identities
   has_many :rates
+  has_many :pages
+  has_many :comments
+  has_many :photos
+  has_one :visit_page, -> {where(page_type: 'MyVisits')}, :class_name => 'Page'
 
   TEMP_EMAIL = 'change@me.com'
   TEMP_EMAIL_REGEX = /change@me.com/
@@ -14,6 +18,12 @@ class User < ActiveRecord::Base
 
   enum role: [:user, :vip, :admin]
   after_initialize :set_default_role, :if => :new_record?
+
+  before_create :add_visit_page
+
+  def add_visit_page
+    @page = self.pages.build(:title => "My Page", :page_type => "MyVisits")
+  end
 
 
   def set_default_role

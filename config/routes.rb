@@ -1,5 +1,13 @@
 Jcastle4::Application.routes.draw do
 
+  resources :pages do
+    member do
+      get 'top100'
+      patch 'uservisit'
+      get 'remove_castle'
+    end
+  end
+
 #admin_path
   namespace :admin do
     get 'dashboard/index'
@@ -40,6 +48,10 @@ Jcastle4::Application.routes.draw do
 
   resources :castles do
     resources :comments, module: :castles
+      member do
+        get 'uservisit'
+        get 'castleslist'
+      end
   end
  
   get 'castles/markers/:id' => 'castles#markers'
@@ -58,6 +70,7 @@ root to: "home#index"
   }
 
   resources :users
+
   resources :rates, only: :update
 
 end

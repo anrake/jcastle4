@@ -23,16 +23,16 @@ class CommentPolicy < ApplicationPolicy
     @current_user.admin? or @current_user.id == @comment.user_id
   end
 
-  class Scope < Struct.new(:current_user, :model)
-    def resolve
-      if current_user.nil?
-        model.where(approved: '1').order("castle_name_en ASC")        
-      elsif current_user.admin?
-        model.all
-      else
-        model.where(approved: '1').order("castle_name_en ASC")
-      end
-    end
-  end
+#  class Scope < Struct.new(:current_user, :model)
+#    def resolve
+#      if current_user.nil?
+#        model.where(approved: '1').order("castle_name_en ASC")        
+#      elsif current_user.admin?
+#        model.all
+#      else
+#        model.where(approved: '1').order("castle_name_en ASC")
+#      end
+#    end
+#  end
 
 end

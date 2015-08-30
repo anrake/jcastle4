@@ -59,5 +59,10 @@ ________________________
 License
 
 NOTES:  
+autocomplete
+http://railscasts.com/episodes/102-auto-complete-association-revised?view=comments
+
 polymorphic comments code from: https://gorails.com/episodes/comments-with-polymorphic-associations
+
+raty.js : http://wbotelhos.com/raty
 

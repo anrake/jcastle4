@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h3><%= link_to (@page.user.name.capitalize + "'s"), user_path(@page.user) %> Visits to the Top 100 Castles</h3>
+
+<ol>
+<% @castles.each do |castle| %>
+
+    <% rating_value = Rate.where(castle_id: castle.id, user_id: @page.user.id).first %>
+	<li><%= castle.castle_name_en %>
+	<% unless rating_value == nil %>
+	<div class="user_star" data-score="<%= rating_value.try(:stars) %>"></div>
+	<% end %>
+</li>
+<% end %>
+</ol>
+
+
+
+
+  <script>
+$('.user_star').raty({
+  path: '/assets',
+  readOnly: true,
+  halfShow: true,
+  score: function() {
+    return $(this).attr('data-score');
+  }
+});
+  </script>

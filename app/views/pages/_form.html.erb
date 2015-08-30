@@ -1,0 +1,12 @@
+<%= simple_form_for(@page) do |f| %>
+  <%= f.error_notification %>
+  <div class="form-inputs">
+			<%= f.input :title %>
+			<%= f.input :content, :label => 'Description' %>
+			<%= f.input :short_desc, :label => 'Summary' %>
+			<%= f.input :comment_pref, :as => :boolean %>
+			<%= f.input :rating_pref, collection: { "My Ratings" => "MyRatings", "Average User Rating" => "AvgUsrRating", "Don't Display Ratings" => "NoDisplay"} %>
+			<%= f.button :submit %>
+  </div>
+
+<% end %>

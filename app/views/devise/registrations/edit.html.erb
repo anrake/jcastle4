@@ -12,7 +12,10 @@
           <% end %>
           <div class="form-group">
             <%= f.label :name %>
-            <%= f.email_field :name, class: 'form-control' %>
+            <%= f.text_field :name, :autofocus => true, class: 'form-control' %>
+            <%= f.label :self_intro %>
+            <%= f.text_field :self_intro, :autofocus => true, class: 'form-control' %>
+
           </div>
           <%= f.submit 'Update Login Info', :class => 'button right' %>
         </fieldset>
@@ -25,7 +28,10 @@
           <fieldset>
             <div class="form-group">
               <%= f.label :name %>
-              <%= f.email_field :name, class: 'form-control' %>
+              <%= f.text_field :name, :autofocus => true, class: 'form-control' %>
+              <%= f.label :self_intro %>
+              <%= f.text_field :self_intro, :autofocus => true, class: 'form-control' %>
+
             </div>
             <%= f.submit 'Update Login Info', :class => 'button right' %>
           </fieldset>

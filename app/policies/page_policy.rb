@@ -1,10 +1,10 @@
-class UserPolicy < ApplicationPolicy
+class PagePolicy < ApplicationPolicy
   
   attr_reader :current_user, :model
 
   def initialize(current_user, model)
     @current_user = current_user
-    @user = model
+    @page = model
   end
 
   def index?
@@ -17,11 +17,11 @@ class UserPolicy < ApplicationPolicy
   end
 
   def edit?
-    @current_user == @user
+    @current_user == @page.user
   end 
 
   def update?
-    @current_user.admin?
+    @current_user.id == @page.user_id
   end
 
   def destroy?

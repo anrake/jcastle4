@@ -9,9 +9,16 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @pages = @user.pages.where(page_type: 'UserPage')
+    @comments = @user.comments
+    @photos = @user.photos
     authorize @user
   end
 
+#  def themepages      
+#    @user = User.find(params[:id])
+#    @pages = @user.pages.where(page_type: 'UserPage')
+#  end 
 
   def update
     @user = User.find(params[:id])
@@ -37,7 +44,7 @@ class UsersController < ApplicationController
   private
 
   def secure_params
-    params.require(:user).permit(:role)
+    params.require(:user).permit(:role, :self_intro)
   end
 
 end

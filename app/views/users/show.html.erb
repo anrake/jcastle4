@@ -1,3 +1,47 @@
-<h3>User</h3>
-<p>Email: <%= @user.email if @user.email %></p>
-<p>Role: <%= @user.role %></p>
+
+<h3>User Profile</h3>
+
+<p>Name: <%= @user.name %><br />
+
+Email: <%= @user.email if @user.email %><br />
+
+member since <%= @user.created_at %>
+</p>
+<ul class="button-group">
+  <li><a href="/users/<%= @user.id %>" class="button tiny">Home</a></li>
+  <li><a href="/pages/<%= @user.visit_page.id %>" class="button tiny">Castle Visits</a></li>
+  <li><a href="/pages/<%= @user.visit_page.id %>/top100" class="button tiny">Top 100 Visits</a></li>
+  <li><a href="#" class="button tiny">Theme Pages</a></li>
+  	<% if policy(@user).edit? %>
+	  <li><a href="/users/edit" class="button tiny">Edit</a></li>
+	  <% end %>
+</ul>
+
+<h2>Theme Pages</h2>
+* <a href="/pages/<%= current_user.visit_page.id %>">Castle Visits</a><br />
+* <a href="/pages/<%= current_user.visit_page.id %>/top100">Top 100 Visits</a>
+<ol>
+<% @pages.each do |page| %>
+	<li><%= link_to page.title, page  %>
+</li>
+<% end %>
+</ol>
+	<% if policy(@user).edit? %>
+		<%= link_to 'New Page', new_page_path, :class => "tiny button" %>
+	<% end %>
+
+<h2>Comments</h2>
+<ol>
+<% @comments.each do |comment| %>
+	<li><%= comment.comment %> - <%= comment.commentable_type %> - <%= comment.commentable.castle_name_en %>
+</li>
+<% end %>
+</ol>
+
+<h2>Photos</h2>
+<ol>
+<% @photos.each do |p| %>
+	<li><%= p.id %> - <%= p.fullpicture %> - <%= p.shortDesc %>
+</li>
+<% end %>
+</ol>

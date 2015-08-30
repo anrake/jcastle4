@@ -1,12 +1,17 @@
 class CastlesController < ApplicationController
-  before_action :set_castle, only: [:show, :markers]
+  before_action :set_castle, only: [:show, :markers, :uservisit]
   after_action :verify_policy_scoped, :only => :index
 
   # GET /castles
   # GET /castles.json
   def index
 #    @castles = Castle.where(approved: '1').order("castle_name_en ASC")
-    @castles = policy_scope(Castle)
+     @castles = policy_scope(Castle)
+  end
+
+  def castleslist
+     @castleslist = Castle.order(:castle_name_en).where("castle_name_en LIKE ?",  "%#{params[:term]}%")
+     render json: @castleslist.map(&:castle_name_en)
   end
 
   # GET /castles/1
@@ -28,6 +33,33 @@ class CastlesController < ApplicationController
     @mappedpics = @castle.photos.where("plat > 0")
     render :xml => @mappedpics.to_xml
   end
+
+
+#  def uservisit3
+#    @page = Page.find(params[:id])
+#    @castle = Castle.find_by_castle_name_en(params[:castle_lookup])
+#
+#    if @page.castles.exists?(@castle)
+#      redirect_to @page, alert: "already added !!"
+#
+#    else
+#      @page.castles << @castle
+#      redirect_to @castle, notice: "You recorded #{@castle.castle_name_en} <a href='/users/#{current_user.id}'>Visit Your Page</a> to see the full list of castles you visited"
+#    end
+#  end
+
+
+#  def uservisit2
+#    @page = current_user.visit_page
+#    if @page.castles.exists?(@castle)
+#      redirect_to @castle, alert: "already added !!"
+#    else
+#      @page.castles << @castle
+#      redirect_to @castle, notice: "You recorded #{@castle.castle_name_en} <a href='/users/#{current_user.id}'>Visit Your Page</a> to see the full list of castles you visited"
+#    end
+#  end
+
+#flash[:notice] = "Order created - Click <a href='#{url_for(@order)}'>here</a> to pay for it!".html_safe
 
   # GET /castles/new
   #def new

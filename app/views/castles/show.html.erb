@@ -38,7 +38,9 @@
             <div id="user_star"></div>
             (avg:<%= @castle.rating_average%>)
             <br />
-            <div class="button tiny">+ My Visits</div>
+              <% unless current_user.visit_page.castles.exists? (@castle) %>
+              <%= link_to '<i class="fi-plus"></i> My Visits'.html_safe, uservisit_castle_path, data: { no_turbolink: true }, class: "tiny button" %>
+              <% end %>
           <% else %> 
             Average Rating  
             <div id="star"></div>
@@ -121,6 +123,7 @@
 		</div>
 	</div>
 
+<div id="side_bar"></div>
 
 <!--	<div id="side_bar"></div> -->
 
@@ -246,6 +249,7 @@ $(document).ready(function($){
     $('#star').raty({
       readOnly: true,
       halfShow: true,
+      cancel: true,
       score: <%= @castle.rating_average %>,
       path: '/assets'
     });

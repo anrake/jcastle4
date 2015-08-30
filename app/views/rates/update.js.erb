@@ -8,6 +8,7 @@ $('#star').raty({
 $('#user_star').raty({
   score: <%= @rate.stars %>,
   half: true,
+  cancel: true,
   path: '/assets',
   click: function(score, evt) {
     $.ajax({

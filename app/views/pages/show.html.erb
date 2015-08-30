@@ -1,0 +1,52 @@
+
+
+
+<% if @page.page_type == 'MyVisits' %>
+  <h3><%= link_to (@page.user.name.capitalize + "'s"), user_path(@page.user) %> List of Visited Castles</h3>
+<% else %>
+  <h3><%= @page.title %></h3>
+  by <%= link_to (@page.user.name.capitalize), user_path(@page.user) %>
+  <p><%= @page.content %></p>
+<% end %>
+
+<% if policy(@page).edit? %>
+  <%= link_to 'Edit', edit_page_path(@page) %> 
+<% end %> 
+
+
+<ol>
+<% @castles.each do |castle| %>
+
+    <% rating_value = Rate.where(castle_id: castle.id, user_id: @page.user.id).first %>
+	<li><%= castle.castle_name_en %> 
+      <% if policy(@page).edit? %>
+        <%= link_to ('<i class="fi-x-circle"></i>').html_safe, remove_castle_page_path(castleid: castle.id) %>
+      <% end %>
+	<% unless rating_value == nil %>
+	<div class="user_star" data-score="<%= rating_value.try(:stars) %>"></div>
+	<% end %>
+</li>
+<% end %>
+</ol>
+
+<% if policy(@page).edit? %>
+  <%= form_for @page, url:uservisit_page_path do |f| %>
+    Add Castles to your page<br />
+      <div class="field">
+        <%= f.label :castle_lookup %><br />
+        <%= f.text_field :castle_lookup, data: {autocomplete_source: castleslist_castle_path} %>
+      </div>
+    <%= f.submit "Add To This Page" %>
+  <% end %>
+<% end %>
+
+  <script>
+$('.user_star').raty({
+  path: '/assets',
+  readOnly: true,
+  halfShow: true,
+  score: function() {
+    return $(this).attr('data-score');
+  }
+});
+  </script>

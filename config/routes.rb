@@ -25,7 +25,11 @@ Jcastle4::Application.routes.draw do
     end
 
     resources :kokuins
-    resources :castles
+    resources :castles do
+      member do
+        patch 'add_visit'
+      end
+    end
 
   get 'photos/bulkupdate/:id' => 'photos#bulkupdate', :as => 'bulk_update'
   patch 'photos/bulkupdatesave/:id' => 'photos#bulkupdatesave'

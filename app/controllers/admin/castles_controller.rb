@@ -1,5 +1,5 @@
 class Admin::CastlesController < ApplicationController
-  before_action :set_castle, only: [:show, :edit, :update, :destroy]
+  before_action :set_castle, only: [:show, :edit, :update, :destroy, :add_visit]
 
   # GET /castles
   # GET /castles.json
@@ -19,6 +19,12 @@ class Admin::CastlesController < ApplicationController
   def new
     @castle = Castle.new
   end
+
+  def add_visit
+    Visit.create(castle_id: @castle.id, visit_year: params[:visit_year]) 
+    redirect_to :action => 'show', :id => params[:id]
+  end
+
 
   # GET /castles/1/edit
   def edit
@@ -77,7 +83,7 @@ class Admin::CastlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def castle_params
-      params.require(:castle).permit(:castle_name_en, :castle_name_ja, :castle_name_alt, :founder, :kamon, :kamon_fam, :year, :year_reconstructed, :structure, :artifacts, :visited, :location, :pro_web_name, :website, :clatitude, :clongitude, :gmapicn, :bestZoom, :bestMap, :visitorInfo, :timeRequired, :access, :manualUpdate, :ekiLatLng, :condition, :castle_type, :prefecture, :rating, :year_visited, :period, :historical_value, :top_100, :has_NT, :has_ICP, :unesco, :destination, :notes, :notesJse, :history, :shortdesc, :has_ishigaki, :has_buildings)
+      params.require(:castle).permit(:castle_name_en, :castle_name_ja, :castle_name_alt, :founder, :kamon, :kamon_fam, :year, :year_reconstructed, :structure, :artifacts, :visited, :location, :pro_web_name, :website, :clatitude, :clongitude, :gmapicn, :bestZoom, :bestMap, :visitorInfo, :timeRequired, :access, :manualUpdate, :ekiLatLng, :condition, :castle_type, :prefecture, :rating, :year_visited, :period, :historical_value, :top_100, :has_NT, :has_ICP, :unesco, :destination, :notes, :notesJse, :history, :shortdesc, :has_ishigaki, :has_buildings, visit_attributes: [:visit_year])
     end
 
     def photo_params

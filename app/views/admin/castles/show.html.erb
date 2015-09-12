@@ -1,3 +1,17 @@
+
+<h3>YEARS</h3> 
+<% for visit in @castle.visits %>
+<%= visit.visit_year %>　
+<% end %>
+
+
+		<%= form_for [:admin, @castle], :url => url_for(:controller => 'admin/castles', :action => 'add_visit') do %>
+			<%= hidden_field_tag(:castle_id, @castle.id) %>
+	  		<%= text_field_tag(:visit_year) %>
+	  		<%= submit_tag("Go!") %>
+		<% end %>
+
+
   <div class="row">
       
     <div class="large-9 columns">

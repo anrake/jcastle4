@@ -4,7 +4,8 @@ class Castle < ActiveRecord::Base
 	has_many :comments, :as => :commentable, :dependent => :destroy
 	has_many :rates
 	has_and_belongs_to_many :pages
-	accepts_nested_attributes_for :photos, :pages
+	has_many :visits, :dependent => :destroy
+	accepts_nested_attributes_for :photos, :pages, :visits
 
 
 def average_rating

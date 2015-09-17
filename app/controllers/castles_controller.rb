@@ -20,6 +20,31 @@ class CastlesController < ApplicationController
     @cpictures = @castle.photos.order("vieworder ASC")
     @comments = @castle.comments
 
+#    @artifactsICP = @castle.properties.where(propertyType: 'Important Cultural Property').all
+#    @artifactsNT = @castle.properties.where(propertyType: 'National Treasure').all
+
+    @artifactsICP = Array.new()
+    @artifactsNT = Array.new()
+
+    @castle.properties.each do |prop|
+      if prop.propertyType == 'Important Cultural Property'
+        if prop.photos.empty? 
+          @artifactsICP << prop.structure
+        else
+          alink = '<a href="/photos/' + prop.photos.first.id.to_s + '">' + prop.structure + '</a>'
+          @artifactsICP << alink
+        end
+      else
+        if prop.photos.empty? 
+          @artifactsNT << prop.structure
+        else
+          @alink = '<a href="/photos/' + prop.photos.first.id.to_s + '">' + prop.structure + '</a>'
+          @artifactsNT << @alink
+        end
+      end
+    end
+
+
     if user_signed_in?
       @rate = Rate.unscope(:where).where(castle_id: @castle.id, user_id: current_user.id).first 
       unless @rate 
@@ -49,15 +74,15 @@ class CastlesController < ApplicationController
 #  end
 
 
-#  def uservisit2
-#    @page = current_user.visit_page
-#    if @page.castles.exists?(@castle)
-#      redirect_to @castle, alert: "already added !!"
-#    else
-#      @page.castles << @castle
-#      redirect_to @castle, notice: "You recorded #{@castle.castle_name_en} <a href='/users/#{current_user.id}'>Visit Your Page</a> to see the full list of castles you visited"
-#    end
-#  end
+  def uservisit
+    @page = current_user.visit_page
+    if @page.castles.exists?(@castle)
+      redirect_to @castle, alert: "already added !!"
+    else
+      @page.castles << @castle
+      redirect_to @castle, notice: "You recorded #{@castle.castle_name_en} <a href='/users/#{current_user.id}'>Visit Your Page</a> to see the full list of castles you visited"
+    end
+  end
 
 #flash[:notice] = "Order created - Click <a href='#{url_for(@order)}'>here</a> to pay for it!".html_safe
 

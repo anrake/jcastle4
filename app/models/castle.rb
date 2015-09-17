@@ -5,6 +5,7 @@ class Castle < ActiveRecord::Base
 	has_many :rates
 	has_and_belongs_to_many :pages
 	has_many :visits, :dependent => :destroy
+	has_many :properties
 	accepts_nested_attributes_for :photos, :pages, :visits
 
 

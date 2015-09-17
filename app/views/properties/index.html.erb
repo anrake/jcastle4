@@ -1,0 +1,107 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Properties</h1>
+
+<div id="content_page"> 
+
+  <p> This is a list of all the castle structures that are nationally registered as National Treasures (NT) or Important Cultural Properties (ICP). These are all original structures that have been selected for their cultural, historical or architectural value. National Treasures are technically a subset of Important Cultural Properties that are exceptionally well done or have considerable historical interest. There are links to any castles or structures I have pictures for on this site. I also have hundreds of other pictures for castles I visited. I will sort through them and gradually add pictures for any structures not yet up.  </p>
+
+<p>start typing in one of the form fields to filter by keywords like castle name or structure type.</p>
+
+<table id="propertiesTable">
+<thead> 
+  <tr>
+  <th filter='false'>No.</th>
+    <th width="120">Castle</th>
+  <th>Structure</th>
+  <th>Artifact<br />Type</th>
+  <th>Structure Type</th>
+  <th>Year</th>
+  </tr>
+</thead>
+<% @counter = 0 %>  
+
+<% for property in @properties %>
+<% @property = property %>
+<% @counter += 1 %>  
+
+<tr valign="top" class="<%= cycle('list-line-odd', 'list-line-even') %>">
+
+    <td><%= @counter %></td>
+<td>
+  
+  <% if @property.castle_id != nil %>
+
+<%= link_to property.castle.castle_name_en, castle_path(property.castle) %>
+
+  <% else %> 
+    <%= property.NameCastle %>
+  <% end %>
+
+</td>
+
+  <td>
+
+    <% unless @property.photos.empty? %>
+              
+        <% @loopno = 1 %>
+      
+      <% if @property.photos.length > 1 %>
+                
+        <% for cpicture in @property.photos %>
+          
+          <% if @loopno == 1 %>
+            
+            <% if cpicture.highlighted == 1 %>
+              <%= link_to property.structure, castle_path(cpicture.imageable) %>
+            <% else %>
+             <%= link_to property.structure, photo_path(cpicture) %>
+              <% end %>
+                    
+          <% else %>    
+                        
+            <% if cpicture.highlighted == 1 %>
+              (<%= link_to @loopno, castle_path(cpicture.imageable) %>)
+            <% else %>
+             (<%= link_to @loopno, photo_path(cpicture) %>)
+          <% end %>
+          
+          
+          <% end %>
+          <% @loopno += 1 %>
+          
+          <% end %>
+      <% else %>
+
+        <% for cpicture in @property.photos %>
+          <% if cpicture.highlighted == 1 %><%= link_to property.structure, castles_path(cpicture.imageable)  %>
+          <% else %>
+            <%= link_to property.structure, photos_path(cpicture) %>
+          <% end %>
+        <% end %>
+      <% end %>
+          
+                            
+    <% else %>
+    <%= property.structure %>
+    <% end %>
+      
+  </td>
+  
+  <td>
+    <% if @property.propertyType == 'National Treasure' %>
+      NT
+      <% else %>
+      ICP
+    <% end %>
+
+  <td><%= property.structureType %></td>
+  <td><%= property.yearBuilt %></td>
+
+  </tr>
+<% end %>
+</table>
+
+<p>This information was collected from the <a href="http://www.bunka.go.jp/bsys/index.asp">Historical Artifacts Database</a> on the Agency for Cultural Affairs website. Besides those that have been officially selected, there are many other original structures you can enjoy at these and other castles throughout the country.</p>
+
+</div>

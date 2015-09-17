@@ -80,6 +80,13 @@
 
   <div class="row">
 		<div class="large-9 columns">
+
+National Treasures <br />
+<%= @artifactsNT.join(', ').html_safe %>
+<p>Important Cultural Properties </p>
+<%= @artifactsICP.join(', ').html_safe %>
+
+
 			  	<table>
 			  		<tr>
 			  			<td width="50%"><b>alt name: </b><%= @castle.castle_name_alt %></td>

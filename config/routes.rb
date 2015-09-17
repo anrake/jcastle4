@@ -1,5 +1,7 @@
 Jcastle4::Application.routes.draw do
 
+  resources :properties
+
   resources :pages do
     member do
       get 'top100'

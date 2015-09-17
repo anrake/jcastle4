@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150830135823) do
+ActiveRecord::Schema.define(version: 20150912074437) do
 
   create_table "castles", force: :cascade do |t|
     t.boolean  "approved",           limit: 1,                             default: false
@@ -155,6 +155,23 @@ ActiveRecord::Schema.define(version: 20150830135823) do
     t.integer  "imageable_id",   limit: 4
     t.string   "imageable_type", limit: 255
     t.integer  "user_id",        limit: 4
+  end
+
+  create_table "photos_properties", id: false, force: :cascade do |t|
+    t.integer "photo_id",    limit: 4
+    t.integer "property_id", limit: 4
+  end
+
+  create_table "properties", force: :cascade do |t|
+    t.integer  "castle_id",     limit: 4
+    t.string   "NameCastle",    limit: 255
+    t.string   "structure",     limit: 255
+    t.string   "propertyType",  limit: 255
+    t.string   "structureType", limit: 255
+    t.string   "yearBuilt",     limit: 255
+    t.string   "photos_list",   limit: 255
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "rates", force: :cascade do |t|

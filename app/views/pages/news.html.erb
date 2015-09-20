@@ -1,5 +1,5 @@
 
-<% if @page.uservisits? %>
+<% if @page.page_type == 'MyVisits' %>
   <h3><%= link_to (@page.user.name.capitalize + "'s"), user_path(@page.user) %> List of Visited Castles</h3>
 <% else %>
   <h3><%= @page.title %></h3>

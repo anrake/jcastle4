@@ -2,6 +2,8 @@ class Page < ActiveRecord::Base
 	  belongs_to :user
 	  has_and_belongs_to_many :castles, :order => 'castle_name_en'
 
+	  enum page_type: [:uservisits, :userpage, :news, :draft]
+
 
 	  def castle_lookup
 	  	Castle.try(:castle_name_en)

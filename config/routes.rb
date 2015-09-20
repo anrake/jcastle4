@@ -5,6 +5,8 @@ Jcastle4::Application.routes.draw do
   resources :pages do
     member do
       get 'top100'
+      get 'news'
+      get 'newsindex'
       patch 'uservisit'
       get 'remove_castle'
     end

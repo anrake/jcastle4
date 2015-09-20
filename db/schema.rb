@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150912074437) do
+ActiveRecord::Schema.define(version: 20150917133805) do
 
   create_table "castles", force: :cascade do |t|
     t.boolean  "approved",           limit: 1,                             default: false
@@ -119,15 +119,20 @@ ActiveRecord::Schema.define(version: 20150912074437) do
   end
 
   create_table "pages", force: :cascade do |t|
-    t.integer  "user_id",      limit: 4
-    t.string   "title",        limit: 255
-    t.text     "content",      limit: 65535
-    t.text     "short_desc",   limit: 65535
-    t.string   "page_type",    limit: 255
-    t.string   "comment_pref", limit: 255,   default: "1"
-    t.string   "rating_pref",  limit: 255,   default: "MyRatings"
-    t.datetime "created_at",                                       null: false
-    t.datetime "updated_at",                                       null: false
+    t.integer  "user_id",       limit: 4
+    t.string   "title",         limit: 255
+    t.text     "content",       limit: 65535
+    t.text     "short_desc",    limit: 65535
+    t.string   "page_type",     limit: 255
+    t.string   "comment_pref",  limit: 255,   default: "1"
+    t.string   "rating_pref",   limit: 255,   default: "MyRatings"
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
+    t.text     "contentJse",    limit: 65535
+    t.text     "short_descJse", limit: 65535
+    t.string   "titleJse",      limit: 255
+    t.boolean  "published",     limit: 1,     default: false
+    t.string   "highlight",     limit: 255
   end
 
   create_table "photos", force: :cascade do |t|
@@ -236,8 +241,8 @@ ActiveRecord::Schema.define(version: 20150912074437) do
   create_table "visits", force: :cascade do |t|
     t.integer  "castle_id",  limit: 4
     t.string   "visit_year", limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_foreign_key "rates", "castles"

@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  before_action :set_page, only: [:show, :edit, :update, :destroy, :top100, :uservisit]
+  before_action :set_page, only: [:show, :edit, :update, :destroy, :top100, :uservisit, :news]
 
   # GET /pages
   # GET /pages.json
@@ -12,6 +12,16 @@ class PagesController < ApplicationController
   def show
     @castles = @page.castles.order('castle_name_en')
   end
+
+  def news
+    @castles = @page.castles.order('castle_name_en')
+    @types = Page.page_types
+  end
+
+  def newsindex
+    @pages = Page.news.all
+  end
+
 
   def top100      
     @castles = @page.castles.where(top_100: 'listed')

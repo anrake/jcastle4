@@ -26,3 +26,28 @@
 	  </div>
 	</div>
 
+<h3>Tags</h3>
+<ul>
+<% for tag in @photo.tags %>
+	<li>
+		<%= link_to tag.tag_group, resource_path(Tagmap.where(tag_name: tag.tag_group).first.tag_resource) %>
+
+		<% if tag.tag_name? %>&nbsp;&gt;&nbsp;
+			<% if Tagmap.where(tag_name: tag.tag_name).exists? %>
+				<%= link_to tag.tag_name, resource_path(Tagmap.where(tag_name: tag.tag_name).first.tag_resource) %>
+			<% else %>  
+				<%= tag.tag_name %>
+			<% end %>
+		<% end %>
+		
+		<% if tag.sub_tag? %>&nbsp;&gt;&nbsp;
+			<% if Tagmap.where(tag_name: tag.sub_tag).exists? %>
+				<%= link_to tag.sub_tag, resource_path(Tagmap.where(tag_name: tag.sub_tag).first.tag_resource) %>
+			<% else %>  
+				<%= tag.sub_tag %>
+			<% end %>
+		<% end %>
+
+	</li>
+<% end %>
+</ul>

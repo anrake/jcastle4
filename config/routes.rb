@@ -1,5 +1,9 @@
 Jcastle4::Application.routes.draw do
 
+  resources :tagmaps
+
+  resources :tags
+
   resources :properties
 
   resources :pages do

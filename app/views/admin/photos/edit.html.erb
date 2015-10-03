@@ -11,6 +11,8 @@
 			<% if @photo.fullpicture? %>
 				<%= image_tag @photo.fullpicture %>
 			<% end %> 
+			
+<%= @photo.tags.inspect %>
 		</div>
     	<div class="large-4 columns">
 	    	<%= render 'form' %>

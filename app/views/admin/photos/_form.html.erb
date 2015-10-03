@@ -1,5 +1,10 @@
 
 			<%= simple_form_for [:admin, @photo] do |f| %>
+
+
+	        <%= render :partial => 'add_tag', :locals => {:f => f } %>
+
+
 			  <%= f.error_notification %>
 	        <%= f.input :fullpicture %>
 	        <%= f.input :vieworder, :input_html => {:style => "width: 50px;"} %>

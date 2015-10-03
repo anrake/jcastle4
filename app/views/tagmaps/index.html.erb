@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Tagmaps</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tagmaps.each do |tagmap| %>
+      <tr>
+        <td><%= link_to 'Show', tagmap %></td>
+        <td><%= link_to 'Edit', edit_tagmap_path(tagmap) %></td>
+        <td><%= link_to 'Destroy', tagmap, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tagmap', new_tagmap_path %>

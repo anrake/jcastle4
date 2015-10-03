@@ -1,0 +1,16 @@
+
+<%= f.simple_fields_for :tags do |tag_form| %>
+
+	<table><tr>
+	<td><%= tag_form.select :tag_group, [["gates","gates"], ["donjon","donjon"], ["yagura","yagura"], ["moats","moats"], ["walls","walls"], ["baileys","baileys"], ["condition","condition"], ["stone_walls","stone_walls"], ["samurai_homes","samurai_homes"], ["goten","goten"], ["maps","maps"], ["kura","kura"], ["bansho","bansho"], ["bridges","bridges"], ["interiors","interiors"], ["castle_towns","castle_towns"], ["edo","edo"], ["kokuin","kokuin"], ["important_cultural_property","important_cultural_property"]], {:include_blank => true} %>
+	<td><%= tag_form.select :tag_name, [["---Yagura---",""], ["seiroyagura","seiroyagura"], ["3_level_yagura","3_level_yagura"], ["2_level_yagura","2_level_yagura"], ["1_level_yagura","1_level_yagura"], ["---Gates---",""],["yaguramon","yaguramon"],["yakuimon","yakuimon"], ["koraimon","koraimon"], ["munamon","munamon"], ["tonashimon","tonashimon"], ["kabukimon","kabukimon"], ["heijuumon","heijuumon"], ["nagayamon","nagayamon"], ["karamon","karamon"], ["uzumimon","uzumimon"], ["masugata","masugata"],["---moats---",""],["dry_moats","dry_moats"], ["water_moats","water_moats"], ["shojibori","shojibori"], ["unebori","unebori"], ["horikiri","horikiri"],  ["stone_lined","stone_lined"], ["unlined","unlined"], ["---donjon structure---",""], ["sotogata","sotogata"], ["borogata","borogata"], ["---donjon style---",""], ["fukugoshiki","compound"], ["renketsushiki","adjoined"], ["renritsushiki","complex"], ["dokuritsushiki","independent"], ["---condition---",""], ["ruins","ruins"], ["original","original"], ["reconstructed","reconstructed"], ["---Edo---",""], ["walls_moats","walls_moats"], ["castle_buildings","castle_buildings"], ["daimyo_palaces","daimyo_palaces"], ["imperial_palace_grounds","imperial_palace_grounds"], ["imperial_palace_east_gardens","imperial_palace_east_gardens"], ["kitanomaru_bailey","kitanomaru_bailey"], ["hibiya_toranomon","hibiya_toranomon"], ["akasaka_ichigaya","akasaka_ichigaya"], ["iidabashi","iidabashi"], ["tokiwabashi","tokiwabashi"], ["---Kokuin---",""], ["circle","circle"], ["square","square"], ["simple_lines","simple_lines"], ["complex","complex"], ["writing","writing"]], {:include_blank => true} %></td>
+		<td>
+		<%= tag_form.select :sub_tag, [["--Gates-Yaguramon--",""],["watariyagura","watariyagura"],["other_yaguramon","other_yaguramon"]], {:include_blank => true} %>
+	</td><td>
+<% unless tag_form.object.nil? || tag_form.object.new_record? %>
+		  <%= tag_form.label '_destroy', 'Remove:' %>
+	      <%= tag_form.check_box '_destroy' %></td>
+	<% end %>
+</tr></table>
+
+    <% end %>

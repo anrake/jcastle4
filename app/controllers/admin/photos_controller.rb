@@ -21,6 +21,11 @@ class Admin::PhotosController < ApplicationController
 
   # GET /photos/1/edit
   def edit
+    if @photo.tags
+      @photo.tags.build
+    else
+      5.times {@photo.tags.build}
+    end
   end
 
   # POST /photos
@@ -129,6 +134,6 @@ class Admin::PhotosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def photo_params
-      params.require(:photo).permit(:description, :shortDesc, :castle_id, :fullpicture, :vieworder, :descJse, :shortDescJse, :hide_profile, :donatedBy, :donatedByLink)
+      params.require(:photo).permit(:description, :shortDesc, :castle_id, :fullpicture, :vieworder, :descJse, :shortDescJse, :hide_profile, :donatedBy, :donatedByLink, tags_attributes: [:id, :tag_name, :tag_group, :description, :sub_tag, :photo_id, :_destroy])
     end
 end

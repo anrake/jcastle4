@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150917133805) do
+ActiveRecord::Schema.define(version: 20150926071237) do
 
   create_table "castles", force: :cascade do |t|
     t.boolean  "approved",           limit: 1,                             default: false
@@ -119,15 +119,15 @@ ActiveRecord::Schema.define(version: 20150917133805) do
   end
 
   create_table "pages", force: :cascade do |t|
-    t.integer  "user_id",       limit: 4
+    t.integer  "user_id",       limit: 4,     default: 3
     t.string   "title",         limit: 255
     t.text     "content",       limit: 65535
     t.text     "short_desc",    limit: 65535
-    t.string   "page_type",     limit: 255
+    t.integer  "page_type",     limit: 4
     t.string   "comment_pref",  limit: 255,   default: "1"
     t.string   "rating_pref",   limit: 255,   default: "MyRatings"
     t.datetime "created_at",                                        null: false
-    t.datetime "updated_at",                                        null: false
+    t.datetime "updated_at"
     t.text     "contentJse",    limit: 65535
     t.text     "short_descJse", limit: 65535
     t.string   "titleJse",      limit: 255
@@ -209,6 +209,23 @@ ActiveRecord::Schema.define(version: 20150917133805) do
     t.string   "highlightPict", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "tagmaps", force: :cascade do |t|
+    t.string   "tag_name",     limit: 255
+    t.string   "tag_resource", limit: 255
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.integer  "photo_id",    limit: 4
+    t.string   "tag_group",   limit: 255
+    t.string   "tag_name",    limit: 255
+    t.string   "sub_tag",     limit: 255
+    t.text     "description", limit: 65535
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "users", force: :cascade do |t|
